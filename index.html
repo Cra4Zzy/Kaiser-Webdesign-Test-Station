@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Kaiser-Webdesign · Cinematic Scroll Hero</title>
+  <meta name="description" content="Cinematic Webdesign & Social Media Marketing mit scrollbarem Hero-Film für einen digitalen Auftritt, der wirkt.">
+  <meta name="theme-color" content="#020405">
+  <link rel="icon" href="./assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="./assets/video/kaiser-hero-scrollfilm.mp4" as="video" type="video/mp4" media="(min-width: 821px)">
+  <link rel="preload" href="./assets/img/hero-poster.jpg" as="image">
+  <link rel="preload" href="./assets/img/scroll-fallback/hero-01.jpg" as="image" media="(max-width: 820px)">
+  <link rel="preload" href="./assets/img/scroll-fallback/mid-01.jpg" as="image" media="(max-width: 820px)">
+  <link rel="stylesheet" href="./assets/css/style.css?v=44">
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="cursor-glow" aria-hidden="true"></div>
+  <div class="loader" aria-hidden="true">
+    <div>
+      <span>KAISER-WEBDESIGN</span>
+      <b>SCROLL-FILM WIRD GELADEN</b>
+    </div>
+  </div>
+
+  <header class="top-ui">
+    <a href="#hero-scroll" class="brand brand-horizontal-logo" aria-label="Kaiser-Webdesign">
+      <img src="./assets/img/kaiser-logo-horizontal.png" alt="Kaiser-Webdesign Logo">
+    </a>
+    <nav aria-label="Navigation">
+      <a href="#services">Services</a>
+      <a href="#problem-solution">Lösung</a>
+      <a href="#audience">Für wen</a>
+      <a href="#showcase">Experience</a>
+      <a href="#process">System</a>
+      <a href="#references">Referenzen</a>
+      <a href="#social-proof">Social</a>
+      <a href="#contact">Kontakt</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- 
+      WICHTIG:
+      Das Video ist der Hero. Es wird beim Scrollen per JS gescrubbt.
+      Keine 6 normalen Hero-Sektionen. Eine sticky Film-Bühne.
+    -->
+    <section id="hero-scroll" class="hero-scroll" aria-label="Cinematic Scroll Hero">
+      <div class="hero-sticky">
+        <video
+          id="scrollVideo"
+          class="scroll-video"
+          src="./assets/video/kaiser-hero-scrollfilm.mp4"
+          poster="./assets/img/hero-poster.jpg"
+          preload="auto"
+          muted
+          playsinline
+          webkit-playsinline>
+        </video>
+
+        <div class="video-shade"></div>
+        <div class="film-lines"></div>
+
+        <aside class="chapter-ui" aria-label="Hero Kapitel">
+          <button class="active" data-step="0"><span>01</span><b>Intro</b></button>
+          <button data-step="1"><span>02</span><b>Awake</b></button>
+          <button data-step="2"><span>03</span><b>Design</b></button>
+          <button data-step="3"><span>04</span><b>System</b></button>
+          <button data-step="4"><span>05</span><b>Social</b></button>
+          <button data-step="5"><span>06</span><b>Contact</b></button>
+        </aside>
+
+        <div class="progress-line" aria-hidden="true"><i></i></div>
+
+        <div class="hero-copy active" data-step="0">
+          <p class="eyebrow">WEB DESIGN & SOCIAL MEDIA MARKETING</p>
+          <h1><span>DIGITALE</span><span>PRÄSENZ.</span><span>ECHTE</span><span>ERGEBNISSE.</span></h1>
+          <p class="lead">Ein digitaler Auftritt, der nicht nach Template aussieht – sondern wie eine Marke wirkt.</p>
+        </div>
+
+        <div class="hero-copy" data-step="1">
+          <p class="eyebrow green">DIE WELT BAUT SICH AUF</p>
+          <h2><span>AUS EINER IDEE</span><span>WIRD EIN SYSTEM.</span></h2>
+          <p class="lead">Strategie, Struktur und Bildsprache werden zu einer Experience, die Besucher führt.</p>
+        </div>
+
+        <div class="hero-copy" data-step="2">
+          <p class="eyebrow cyan">WEBDESIGN MIT DRAMATURGIE</p>
+          <h2><span>WEBSITES,</span><span>DIE WIRKEN.</span></h2>
+          <p class="lead">Mobile First, Performance, klare Nutzerführung und ein Look, der im Kopf bleibt.</p>
+        </div>
+
+        <div class="hero-copy" data-step="3">
+          <p class="eyebrow violet">MEHR ALS NUR EINE SEITE</p>
+          <h2><span>DEIN AUFTRITT</span><span>WIRD ZUR</span><span>EXPERIENCE.</span></h2>
+          <p class="lead">Jeder Scroll-Moment erzählt deine Marke weiter – vom ersten Eindruck bis zur Anfrage.</p>
+        </div>
+
+        <div class="hero-copy" data-step="4">
+          <p class="eyebrow green">SOCIAL MEDIA MIT SYSTEM</p>
+          <h2><span>CONTENT,</span><span>DER SICHTBAR</span><span>MACHT.</span></h2>
+          <p class="lead">Strategie, Reels, Kampagnen und Brand Voice greifen sauber ineinander.</p>
+        </div>
+
+        <div class="hero-copy" data-step="5">
+          <p class="eyebrow cyan">JETZT DIGITAL STÄRKER WERDEN</p>
+          <h2><span>BEREIT FÜR</span><span>EINEN AUFTRITT,</span><span>DER BLEIBT?</span></h2>
+          <p class="lead">Lass uns eine Website und Social Media Präsenz bauen, die nicht aussieht wie alle anderen.</p>
+          <a class="hero-cta" href="#contact">Projekt anfragen <span>→</span></a>
+        </div>
+
+        <div class="scroll-cue">
+          <i></i>
+          <span>Scroll to control the film</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="content-section reveal cinematic-surface">
+      <div class="section-bg"><img src="./assets/img/section-services-bg.png" alt="" loading="lazy" decoding="async"></div>
+      <div class="section-overlay"></div>
+      <div class="section-inner">
+        <p class="section-kicker">Website und Social Media als System</p>
+        <h2>Webdesign und Social Media, die sichtbar zusammenarbeiten.</h2>
+        <p class="section-intro">Vom ersten Eindruck bis zur Anfrage greifen Design, Content, Vertrauen und klare Führung sauber ineinander.</p>
+        <div class="service-grid">
+          <article>
+            <span>01</span>
+            <h3>Webdesign</h3>
+            <p>Individuelle Websites mit starker Dramaturgie, hochwertiger Bildwelt und einer Struktur, die Besucher gezielt zur Anfrage führt.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Social Media</h3>
+            <p>Content-Strategie, Reels und Markenkommunikation mit Wiedererkennungswert – abgestimmt auf Website, Zielgruppe und Angebot.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Lead-System</h3>
+            <p>Vertrauen, Angebotsklarheit und Kontaktpunkte werden so verbunden, dass aus Aufmerksamkeit echte Anfragen entstehen.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+
+
+
+    <section id="problem-solution" class="problem-solution reveal" aria-label="Problem und Lösung">
+      <div class="problem-bg" aria-hidden="true"></div>
+      <div class="problem-inner">
+        <div class="problem-head">
+          <p class="section-kicker">Problem → Lösung</p>
+          <h2>Dein Auftritt sieht okay aus, aber bringt noch nicht genug Anfragen?</h2>
+          <p>Dann fehlt meistens nicht die nächste Design-Schicht, sondern ein klares System aus Positionierung, Website, Content und Anfrageführung.</p>
+        </div>
+
+        <div class="problem-grid">
+          <div class="problem-column problem-side">
+            <span class="column-label">Was oft bremst</span>
+            <article><b>01</b><h3>Die Website wirkt austauschbar.</h3><p>Sie wirkt vielleicht ordentlich, macht aber nicht klar genug, warum Kunden gerade dir vertrauen sollen.</p></article>
+            <article><b>02</b><h3>Social Media läuft nebenbei.</h3><p>Posts, Reels und Website wirken nicht wie ein gemeinsamer Markenauftritt.</p></article>
+            <article><b>03</b><h3>Besucher wissen nicht, was sie tun sollen.</h3><p>Ohne klare Führung, starke Botschaft und eindeutigen CTA bleibt aus Aufmerksamkeit selten eine Anfrage.</p></article>
+          </div>
+
+          <div class="solution-core" aria-hidden="true">
+            <div class="orb"><span>SHIFT</span></div>
+            <i></i>
+            <p>Aus verstreuter Präsenz wird ein digitales System.</p>
+          </div>
+
+          <div class="problem-column solution-side">
+            <span class="column-label">Was wir daraus bauen</span>
+            <article><b>01</b><h3>Eine klare digitale Bühne.</h3><p>Deine Marke bekommt eine starke visuelle Welt, klare Aussagen und eine Website, die professionell verkauft.</p></article>
+            <article><b>02</b><h3>Content mit Wiedererkennung.</h3><p>Social Media, Tonalität und Bildsprache passen zur Website und verstärken denselben hochwertigen Eindruck.</p></article>
+            <article><b>03</b><h3>Ein Weg zur Anfrage.</h3><p>Struktur, Vertrauen, CTA und Kontaktpunkte greifen so ineinander, dass Besucher leichter anfragen.</p></article>
+          </div>
+        </div>
+
+        <div class="solution-result">
+          <span>Ergebnis</span>
+          <p>Ein Auftritt, der nicht nur hochwertig aussieht, sondern Orientierung gibt, Vertrauen schafft und aus Interesse echte Anfragen macht.</p>
+          <a href="#contact">Projekt besprechen <i>→</i></a>
+        </div>
+      </div>
+    </section>
+
+
+
+
+    <section id="audience" class="audience-section reveal" aria-label="Für wen ist Kaiser-Webdesign geeignet">
+      <div class="audience-bg" aria-hidden="true"></div>
+
+      <div class="audience-inner">
+        <div class="audience-head">
+          <p class="section-kicker">Für wen ist das?</p>
+          <h2>Für Unternehmen, die online professioneller wirken und planbar mehr Anfragen bekommen wollen.</h2>
+          <p>Ob lokal, persönlich, handwerklich oder visuell geprägt: Dein Auftritt wird so aufgebaut, dass er zur Branche passt und nicht wie eine austauschbare Vorlage wirkt.</p>
+        </div>
+
+        <div class="audience-grid">
+          <a class="audience-card" href="https://ersans-kebap.de/" target="_blank" rel="noopener">
+            <span>01</span>
+            <b>Lokale Unternehmen</b>
+            <p>Für Restaurants, Imbisse und regionale Anbieter, die schnell Vertrauen schaffen und Kunden klar zur Anfrage oder Bestellung führen wollen.</p>
+            <small>Referenz: Ersan’s Kebap</small>
+          </a>
+
+          <a class="audience-card" href="https://www.tiktok.com/@pineker_perfomance?_r=1&_t=ZG-96toiV6qQO9" target="_blank" rel="noopener">
+            <span>02</span>
+            <b>Coaches & Dienstleister</b>
+            <p>Für persönliche Marken, die Expertise, Vertrauen und Wiedererkennung über Website und Social Media aufbauen möchten.</p>
+            <small>Referenz: Coach Roman</small>
+          </a>
+
+          <a class="audience-card" href="https://www.spanndeckenbau-vasyli.de/" target="_blank" rel="noopener">
+            <span>03</span>
+            <b>Handwerk & Bau</b>
+            <p>Für Betriebe, die hochwertige Arbeit sichtbar machen und aus Website-Besuchern echte Anfragen gewinnen möchten.</p>
+            <small>Referenz: Vasyl Shkurat</small>
+          </a>
+
+          <a class="audience-card" href="https://haarstudio-avanti.de/" target="_blank" rel="noopener">
+            <span>04</span>
+            <b>Beauty & Gastronomie</b>
+            <p>Für Marken, bei denen Atmosphäre, Bildsprache und Vertrauen direkt darüber entscheiden, ob Kunden Kontakt aufnehmen.</p>
+            <small>Referenz: Avanti Haarstudio</small>
+          </a>
+        </div>
+      </div>
+    </section>
+
+<section id="showcase" class="mid-scroll-film" aria-label="Zweite cinematic Scroll Sektion">
+      <div class="mid-sticky">
+        <video
+          id="midScrollVideo"
+          class="scroll-video mid-video"
+          src="./assets/video/kaiser-mid-scrollfilm.mp4"
+          poster="./assets/img/mid-scroll-poster.jpg"
+          preload="auto"
+          muted
+          playsinline
+          webkit-playsinline>
+        </video>
+
+        <div class="video-shade mid-shade"></div>
+        <div class="film-lines"></div>
+
+        <aside class="mid-chapter-ui" aria-label="Showcase Kapitel">
+          <button class="active" data-mid-jump="0"><span>01</span><b>Präsenz</b></button>
+          <button data-mid-jump="1"><span>02</span><b>Module</b></button>
+          <button data-mid-jump="2"><span>03</span><b>System</b></button>
+          <button data-mid-jump="3"><span>04</span><b>Wachstum</b></button>
+        </aside>
+
+        <div class="mid-progress" aria-hidden="true"><i></i></div>
+
+        <div class="mid-copy active" data-mid-step="0">
+          <p class="eyebrow cyan">DIGITALE PRÄSENZ</p>
+          <h2><span>SICHTBAR.</span><span>MODERN.</span><span>KLAR.</span></h2>
+          <p class="lead">Eine Bühne für starke digitale Auftritte – mit visueller Tiefe, technischer Klarheit und einem Look, der hängen bleibt.</p>
+        </div>
+
+        <div class="mid-copy" data-mid-step="1">
+          <p class="eyebrow green">VERBUNDENE MODULE</p>
+          <h2><span>STRUKTUR,</span><span>CONTENT</span><span>UND FLOW.</span></h2>
+          <p class="lead">Einzelne Elemente wirken nicht isoliert, sondern sind intelligent miteinander verbunden – genau wie dein Angebot.</p>
+        </div>
+
+        <div class="mid-copy" data-mid-step="2">
+          <p class="eyebrow violet">SYSTEM & PERFORMANCE</p>
+          <h2><span>MEHR ALS</span><span>NUR DESIGN.</span></h2>
+          <p class="lead">Wenn Strategie, Design und Technologie sauber zusammenspielen, entsteht ein digitales System mit echter Wirkung.</p>
+        </div>
+
+        <div class="mid-copy" data-mid-step="3">
+          <p class="eyebrow cyan">ERGEBNISSE & WACHSTUM</p>
+          <h2><span>VON DER</span><span>PRÄSENZ ZUR</span><span>ANFRAGE.</span></h2>
+          <p class="lead">Am Ende geht es nicht nur um schöne Bilder, sondern um Vertrauen, Klarheit und Ergebnisse, die deine Marke weiterbringen.</p>
+          <a class="hero-cta" href="#references">Referenzen ansehen <span>→</span></a>
+        </div>
+      </div>
+    </section>
+
+<section id="process" class="process-wide reveal cinematic-surface">
+      <div class="section-bg"><img src="./assets/img/section-process-bg.png" alt="" loading="lazy" decoding="async"></div>
+      <div class="section-overlay"></div>
+
+      <div class="process-wide-inner">
+        <div class="process-heading">
+          <p class="section-kicker">System & Ablauf</p>
+          <h2>Keine zufällige Website. Ein geführter Markenauftritt.</h2>
+          <p>Strategie, Design, Technologie und Content werden nicht getrennt gedacht, sondern als klarer Prozess geplant – damit dein Auftritt hochwertig wirkt und Ergebnisse liefern kann.</p>
+        </div>
+
+        <div class="process-cards">
+          <article>
+            <span>01</span>
+            <h3>Analyse</h3>
+            <p>Zielgruppe, Angebot, Positionierung und Look werden sauber geklärt, damit der Auftritt Substanz und Richtung bekommt.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Konzept</h3>
+            <p>Wir planen Dramaturgie, Seitenstruktur, Texte, Scroll-Momente und die visuelle Welt deiner Marke.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Umsetzung</h3>
+            <p>Design, Entwicklung, Responsiveness, Formular, Animationen und Launch greifen wie ein sauberer Produktionsprozess ineinander.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+<section id="references" class="references-clean" aria-label="Referenzen Showcase">
+      <div class="references-clean-sticky">
+        <div class="refs-left">
+          <p class="section-kicker">Referenzen</p>
+          <h2>Ausgewählte Arbeiten.</h2>
+
+          <div class="refs-text active" data-ref-step="0">
+            <span>01 · Webdesign · Handwerk</span>
+            <h3>Vasyl Shkurat</h3>
+            <p>Ein moderner Handwerksauftritt mit klarer Positionierung, starkem Hero und direkter Kontaktführung.</p>
+            <a class="ref-link" href="https://www.spanndeckenbau-vasyli.de/" target="_blank" rel="noopener">Website ansehen <i>→</i></a>
+          </div>
+
+          <div class="refs-text" data-ref-step="1">
+            <span>02 · Webdesign · Gastronomie</span>
+            <h3>Ersan’s Kebap</h3>
+            <p>Ein warmer, lokaler Auftritt mit klarer Speisekarten-Führung, Vertrauen und direktem Bestellimpuls.</p>
+            <a class="ref-link" href="https://ersans-kebap.de/" target="_blank" rel="noopener">Website ansehen <i>→</i></a>
+          </div>
+
+          <div class="refs-text" data-ref-step="2">
+            <span>03 · Webdesign · Beauty</span>
+            <h3>Avanti Haarstudio</h3>
+            <p>Elegante Atmosphäre, hochwertige Bildsprache und ruhige Premium-Anmutung für Salon und Styling.</p>
+            <a class="ref-link" href="https://haarstudio-avanti.de/" target="_blank" rel="noopener">Website ansehen <i>→</i></a>
+          </div>
+
+          <div class="refs-text" data-ref-step="3">
+            <span>04 · Webdesign · Bau / VR</span>
+            <h3>Butz-Bauwelt</h3>
+            <p>Strukturierter Unternehmensauftritt mit Informationsdichte, Vertrauen und klarer Angebotsführung.</p>
+            <a class="ref-link" href="https://www.butz-bauwelt.de/" target="_blank" rel="noopener">Website ansehen <i>→</i></a>
+          </div>
+
+          <div class="refs-text" data-ref-step="4">
+            <span>05 · Webdesign · Bar / Gastronomie</span>
+            <h3>Der Stern</h3>
+            <p>Atmosphärischer Website-Auftritt für Drinks, Stimmung und Bar-Food – mit starkem Hero, klaren Infos und direkter Kontaktführung.</p>
+            <a class="ref-link" href="https://www.xn--stern-dinkelsbhl-wzb.de/" target="_blank" rel="noopener">Website ansehen <i>→</i></a>
+          </div>
+        </div>
+
+        <div class="refs-visual">
+          <a class="refs-card active" data-ref-step="0" href="https://www.spanndeckenbau-vasyli.de/" target="_blank" rel="noopener" aria-label="Vasyl Shkurat Website ansehen">
+            <img src="./assets/references/ref-02-spanndeckenbau.jpg" alt="Website Referenz Vasyl Shkurat Spanndeckenbau">
+          </a>
+          <a class="refs-card" data-ref-step="1" href="https://ersans-kebap.de/" target="_blank" rel="noopener" aria-label="Ersan's Kebap Website ansehen">
+            <img src="./assets/references/ref-01-ersans-kebap.jpg" alt="Website Referenz Ersan's Kebap">
+          </a>
+          <a class="refs-card" data-ref-step="2" href="https://haarstudio-avanti.de/" target="_blank" rel="noopener" aria-label="Avanti Haarstudio Website ansehen">
+            <img src="./assets/references/ref-03-avanti-haarstudio.jpg" alt="Website Referenz Avanti Haarstudio">
+          </a>
+          <a class="refs-card" data-ref-step="3" href="https://www.butz-bauwelt.de/" target="_blank" rel="noopener" aria-label="Butz-Bauwelt Website ansehen">
+            <img src="./assets/references/ref-04-butz-bauwelt.jpg" alt="Website Referenz Butz Bauwelt">
+          </a>
+          <a class="refs-card" data-ref-step="4" href="https://www.xn--stern-dinkelsbhl-wzb.de/" target="_blank" rel="noopener" aria-label="Der Stern Website ansehen">
+            <img src="./assets/references/ref-05-der-stern.jpg" alt="Website Referenz Der Stern Dinkelsbühl">
+          </a>
+        </div>
+
+        <div class="refs-bottom">
+          <div class="refs-progress" aria-hidden="true"><i></i></div>
+          <div class="refs-tabs" aria-label="Referenzen Navigation">
+            <button class="active" data-ref-jump="0">01</button>
+            <button data-ref-jump="1">02</button>
+            <button data-ref-jump="2">03</button>
+            <button data-ref-jump="3">04</button>
+            <button data-ref-jump="4">05</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="kw-mobile-refs-list" aria-label="Website Referenzen Mobile">
+        <article class="kw-mobile-ref-card"><div class="kw-mobile-ref-copy"><span>01 · Webdesign · Handwerk</span><h3>Vasyl Shkurat</h3><p>Moderner Handwerksauftritt mit klarer Positionierung, starkem Hero und direkter Kontaktführung.</p><a href="https://www.spanndeckenbau-vasyli.de/" target="_blank" rel="noopener">Website ansehen <i>→</i></a></div><img src="./assets/references/ref-02-spanndeckenbau.jpg" alt="Website Referenz Vasyl Shkurat Spanndeckenbau"></article>
+        <article class="kw-mobile-ref-card"><div class="kw-mobile-ref-copy"><span>02 · Webdesign · Gastronomie</span><h3>Ersan’s Kebap</h3><p>Warmer lokaler Auftritt mit klarer Speisekarten-Führung, Vertrauen und direktem Bestellimpuls.</p><a href="https://ersans-kebap.de/" target="_blank" rel="noopener">Website ansehen <i>→</i></a></div><img src="./assets/references/ref-01-ersans-kebap.jpg" alt="Website Referenz Ersan's Kebap"></article>
+        <article class="kw-mobile-ref-card"><div class="kw-mobile-ref-copy"><span>03 · Webdesign · Beauty</span><h3>Avanti Haarstudio</h3><p>Elegante Atmosphäre, hochwertige Bildsprache und ruhige Premium-Anmutung für Salon und Styling.</p><a href="https://haarstudio-avanti.de/" target="_blank" rel="noopener">Website ansehen <i>→</i></a></div><img src="./assets/references/ref-03-avanti-haarstudio.jpg" alt="Website Referenz Avanti Haarstudio"></article>
+        <article class="kw-mobile-ref-card"><div class="kw-mobile-ref-copy"><span>04 · Webdesign · Bau / VR</span><h3>Butz-Bauwelt</h3><p>Strukturierter Unternehmensauftritt mit Informationsdichte, Vertrauen und klarer Angebotsführung.</p><a href="https://www.butz-bauwelt.de/" target="_blank" rel="noopener">Website ansehen <i>→</i></a></div><img src="./assets/references/ref-04-butz-bauwelt.jpg" alt="Website Referenz Butz-Bauwelt"></article>
+        <article class="kw-mobile-ref-card"><div class="kw-mobile-ref-copy"><span>05 · Webdesign · Bar / Gastronomie</span><h3>Der Stern</h3><p>Atmosphärischer Website-Auftritt für Drinks, Stimmung und Bar-Food mit direkter Kontaktführung.</p><a href="https://www.xn--stern-dinkelsbhl-wzb.de/" target="_blank" rel="noopener">Website ansehen <i>→</i></a></div><img src="./assets/references/ref-05-der-stern.jpg" alt="Website Referenz Der Stern Dinkelsbühl"></article>
+      </div>
+
+    </section>
+
+    
+
+
+
+    <section id="social-proof" class="social-proof-section reveal" aria-label="Social Media Referenzen">
+      <div class="social-bg" aria-hidden="true"></div>
+      <div class="social-inner">
+        <div class="social-head">
+          <p class="section-kicker">Social Media</p>
+          <h2>Profile, die nicht zufällig wirken.</h2>
+          <p>Social Media ist kein Nebenkanal. Es ist der tägliche Eindruck deiner Marke. Deshalb müssen Feed, Profil, Story und Website wie ein System zusammenspielen.</p>
+        </div>
+
+        <div class="social-showcase">
+          <article class="social-profile-card">
+            <div class="social-phone">
+              <img src="./assets/social/social-roman-pineker.jpg" alt="Instagram Profil Roman Pineker">
+            </div>
+            <div class="social-profile-copy">
+              <span>01 · Coaching / Fitness</span>
+              <h3>Roman Pineker</h3>
+              <p>Ein klar positionierter Coaching-Auftritt mit wiedererkennbarem Content, starkem Transformationsthema und direkter Vertrauenswirkung.</p>
+              <div class="social-metrics">
+                <div><b>592</b><small>Follower</small></div>
+                <div><b>29</b><small>Beiträge</small></div>
+                <div><b>5+</b><small>Jahre Erfahrung</small></div>
+              </div>
+              <a href="https://www.instagram.com/roman.pineker/" target="_blank" rel="noopener">Profil ansehen <i>→</i></a>
+            </div>
+          </article>
+
+          <article class="social-profile-card alt">
+            <div class="social-phone">
+              <img src="./assets/social/social-n1ce-shop.jpg" alt="Instagram Profil N1CE Shop">
+            </div>
+            <div class="social-profile-copy">
+              <span>02 · Brand / Fashion</span>
+              <h3>N1CE Shop</h3>
+              <p>Ein markenorientierter Faithwear-Auftritt mit klarer Bildsprache, emotionalem Produktgefühl und sauberer Drop-Kommunikation.</p>
+              <div class="social-metrics">
+                <div><b>536</b><small>Follower</small></div>
+                <div><b>8</b><small>Beiträge</small></div>
+                <div><b>Drop</b><small>Brand Launch</small></div>
+              </div>
+              <a href="https://www.instagram.com/n1ceshop_/" target="_blank" rel="noopener">Profil ansehen <i>→</i></a>
+            </div>
+          </article>
+        </div>
+
+        <div class="social-system-note">
+          <span>Website + Social</span>
+          <p>Der stärkste Eindruck entsteht, wenn Website und Social Media dieselbe Sprache sprechen: gleiche Marke, gleiche Richtung, gleiche Wirkung.</p>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="contact" class="contact-cta-section reveal" aria-label="Projekt Anfrage">
+      <div class="contact-cta-bg" aria-hidden="true"></div>
+      <div class="contact-cta-inner">
+        <div class="contact-cta-head">
+          <p class="section-kicker">Projekt starten</p>
+          <h2>Bereit für einen Auftritt, der nicht nur gut aussieht, sondern Anfragen bringt?</h2>
+          <p>Schreib kurz, worum es geht. Ich prüfe dein Projekt und melde mich mit einer klaren, ehrlichen Einschätzung zurück.</p>
+          <div class="cta-benefits">
+            <span>Website</span><span>Social Media</span><span>Brand-Auftritt</span><span>Launch-ready</span>
+          </div>
+        </div>
+
+        <form class="premium-cta-form" action="https://formspree.io/f/xykpraze" method="POST">
+          <div class="form-topline"><span>Kostenlose Ersteinschätzung</span><b>Antwort so schnell wie möglich</b></div>
+          <label><span>Name</span><input required name="name" autocomplete="name" placeholder="Dein Name"></label>
+          <label><span>E-Mail</span><input required type="email" name="email" autocomplete="email" placeholder="deine@email.de"></label>
+          <label><span>Worum geht es?</span><select name="project_type" required><option value="">Bitte auswählen</option><option>Neue Website</option><option>Website Redesign</option><option>Social Media Marketing</option><option>Website + Social Media</option><option>Brand / Launch / Kampagne</option></select></label>
+          <label><span>Wann soll es starten?</span><select name="timeline"><option value="">Optional auswählen</option><option>Sofort</option><option>In den nächsten 2–4 Wochen</option><option>In 1–3 Monaten</option><option>Ich möchte erstmal beraten werden</option></select></label>
+          <label class="wide"><span>Was ist dein Ziel?</span><textarea required name="message" rows="5" placeholder="Kurz beschreiben: Branche, aktuelle Situation, Wunschziel, Website/Social Media Link falls vorhanden."></textarea></label>
+          <input type="hidden" name="_redirect" value="https://www.kaiser-webdesign.de/danke/">
+          <button type="submit">Projekt anfragen <i>→</i></button>
+          <p class="form-note">Kein Spam. Keine Copy-Paste-Antwort. Du bekommst eine ehrliche Einschätzung, was für deinen Auftritt wirklich sinnvoll ist.</p>
+        </form>
+      </div>
+    </section>
+
+
+</main>
+
+  <footer id="footer" class="site-footer">
+    <div class="footer-brand">
+      <img src="./assets/img/kaiser-logo-horizontal.png" alt="Kaiser-Webdesign Logo">
+      <p>Webdesign & Social Media Marketing für digitale Auftritte, die nicht nach Vorlage aussehen.</p>
+    </div>
+
+    <nav class="footer-nav" aria-label="Footer Navigation">
+      <a href="#services">Services</a>
+      <a href="#problem-solution">Lösung</a>
+      <a href="#audience">Für wen</a>
+      <a href="#showcase">Experience</a>
+      <a href="#process">System</a>
+      <a href="#references">Referenzen</a>
+      <a href="#social-proof">Social</a>
+      <a href="#contact">Kontakt</a>
+    </nav>
+
+    <div class="footer-legal">
+      <a href="./impressum/">Impressum</a>
+      <a href="./datenschutz/">Datenschutz</a>
+    </div>
+  </footer>
+
+  <script src="./assets/js/main.js?v=44"></script>
+</body>
+</html>
