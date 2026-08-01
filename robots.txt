@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://gabelstaplerfahrschule-andreas.de/sitemap.xml
