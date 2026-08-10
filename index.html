@@ -4,12 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#030405" />
-  <meta name="kaiser-build" content="v13-mobile-scroll-engine-20260806" />
   <meta name="description" content="Kaiser Webdesign entwickelt hochwertige Websites und Social-Media-Auftritte, die Marken klar positionieren und aus Aufmerksamkeit echte Anfragen machen." />
   <title>Kaiser Webdesign · Digitale Auftritte mit Wirkung</title>
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
   <link rel="preload" as="image" href="assets/img/hero-poster-v7.jpg" fetchpriority="high" />
-  <link rel="stylesheet" href="assets/css/site-mobile-scrub-v13.css" />
+  <link rel="stylesheet" href="assets/css/site.css?v=20260810-mobile-header" />
 </head>
 <body>
   <a class="skip-link" href="#inhalt">Direkt zum Inhalt</a>
@@ -44,24 +43,22 @@
 
     <a class="header-cta" href="#kontakt"><span>Projekt starten</span><i>↗</i></a>
 
-    <details class="mobile-menu" data-mobile-menu>
-      <summary class="menu-toggle" aria-label="Navigation öffnen">
-        <span>Menü</span>
-        <i></i>
-        <i></i>
-      </summary>
+    <button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-menu" aria-label="Menü öffnen">
+      <span>Menü</span>
+      <i></i>
+      <i></i>
+    </button>
 
-      <nav class="mobile-nav" id="mobile-menu" aria-label="Mobile Navigation">
-        <a href="#leistungen"><span>01</span>Leistungen</a>
-        <a href="#arbeiten"><span>02</span>Arbeiten</a>
-        <a href="#prozess"><span>03</span>Prozess</a>
-        <a href="#kontakt"><span>04</span>Kontakt</a>
-        <div>
-          <a href="https://www.instagram.com/webdesign_kaiser/" target="_blank" rel="noopener">Instagram ↗</a>
-          <a href="https://www.linkedin.com/in/ivan-kaiser-416702360/" target="_blank" rel="noopener">LinkedIn ↗</a>
-        </div>
-      </nav>
-    </details>
+    <nav class="mobile-nav" id="mobile-menu" data-mobile-nav aria-label="Mobile Navigation" aria-hidden="true" inert>
+      <a href="#leistungen"><span>01</span>Leistungen</a>
+      <a href="#arbeiten"><span>02</span>Arbeiten</a>
+      <a href="#prozess"><span>03</span>Prozess</a>
+      <a href="#kontakt"><span>04</span>Kontakt</a>
+      <div>
+        <a href="https://www.instagram.com/webdesign_kaiser/" target="_blank" rel="noopener">Instagram ↗</a>
+        <a href="https://www.linkedin.com/in/ivan-kaiser-416702360/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+    </nav>
   </header>
 
   <main id="inhalt">
@@ -70,22 +67,15 @@
       id="start"
       data-sequence
       data-sequence-name="portal"
+      data-pack-pattern="assets/sequences/portal-{part}.bin"
+      data-pack-count="6"
+      data-frames-per-pack="40"
+      data-frame-count="240"
       data-priority="true"
     >
       <div class="film-stage">
         <img class="film-fallback" src="assets/img/hero-poster-v7.jpg" alt="" />
-        <video
-          class="film-video"
-          data-sequence-video
-          src="assets/video/portal-scroll-v1.mp4"
-          poster="assets/img/hero-poster-v7.jpg"
-          preload="auto"
-          muted
-          playsinline
-          webkit-playsinline
-          disablepictureinpicture
-          aria-hidden="true"
-        ></video>
+        <canvas class="film-canvas" data-sequence-canvas aria-label="Cinematische Portal-Animation"></canvas>
         <div class="film-grade film-grade--hero" aria-hidden="true"></div>
 
         <div class="film-rail" aria-hidden="true">
@@ -256,21 +246,14 @@
       id="erlebnis"
       data-sequence
       data-sequence-name="studio"
+      data-pack-pattern="assets/sequences/studio-{part}.bin"
+      data-pack-count="6"
+      data-frames-per-pack="40"
+      data-frame-count="240"
     >
       <div class="film-stage">
         <img class="film-fallback" src="assets/img/world-poster-v7.jpg" alt="" />
-        <video
-          class="film-video"
-          data-sequence-video
-          src="assets/video/studio-scroll-v1.mp4"
-          poster="assets/img/world-poster-v7.jpg"
-          preload="metadata"
-          muted
-          playsinline
-          webkit-playsinline
-          disablepictureinpicture
-          aria-hidden="true"
-        ></video>
+        <canvas class="film-canvas" data-sequence-canvas aria-label="Cinematische Reise vom digitalen Raum zum fertigen Auftritt"></canvas>
         <div class="film-grade film-grade--studio" aria-hidden="true"></div>
 
         <div class="film-rail film-rail--light" aria-hidden="true">
@@ -566,6 +549,6 @@
     </div>
   </footer>
 
-  <script src="assets/js/site-mobile-scrub-v13.js" defer></script>
+  <script src="assets/js/site.js?v=20260810-mobile-header" defer></script>
 </body>
 </html>

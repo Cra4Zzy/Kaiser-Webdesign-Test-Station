@@ -10,9 +10,6 @@
   const frameName = (index) => String(index + 1).padStart(4, "0");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const isMobile = window.matchMedia("(max-width: 760px)").matches;
-  const directMobileScrub = window.matchMedia(
-    "(max-width: 980px), (hover: none), (pointer: coarse)"
-  ).matches;
 
   document.documentElement.classList.add("has-js");
 
@@ -509,283 +506,13 @@
     }
   }
 
-  class VideoSequence {
-    constructor(section) {
-      this.section = section;
-      this.video = section.querySelector("[data-sequence-video]");
-      this.priority = section.dataset.priority === "true";
-      this.scenes = [...section.querySelectorAll("[data-scene]")];
-      this.progressBar = section.querySelector("[data-film-progress]");
-      this.chapterDots = [...section.querySelectorAll(".chapter-dots span")];
-      this.scrollCue = section.querySelector(".scroll-indicator");
-      this.currentProgress = 0;
-      this.targetProgress = 0;
-      this.pendingTime = 0;
-      this.top = 0;
-      this.distance = 1;
-      this.nearViewport = this.priority;
-      this.didStartFullLoad = false;
-      this.destroyed = false;
-      this.failed = false;
-      this.primed = false;
-      this.priming = false;
-      this.readyPromise = null;
-
-      this.video.muted = true;
-      this.video.defaultMuted = true;
-      this.video.playsInline = true;
-      this.video.setAttribute("playsinline", "");
-      this.video.setAttribute("webkit-playsinline", "");
-
-      this.measure();
-      this.resize();
-      this.updateScenes(0);
-
-      this.video.addEventListener("loadedmetadata", () => {
-        this.applyTargetTime(true);
-        requestRender();
-      });
-
-      this.video.addEventListener("loadeddata", () => {
-        this.failed = false;
-        this.section.classList.add("has-video-frame");
-        this.applyTargetTime(true);
-        requestRender();
-      });
-
-      this.video.addEventListener("seeked", () => {
-        this.applyTargetTime(true);
-        requestRender();
-      });
-
-      this.video.addEventListener("error", () => {
-        this.failed = true;
-        this.section.classList.remove("has-video-frame");
-      });
-
-      if ("ResizeObserver" in window) {
-        this.resizeObserver = new ResizeObserver(() => {
-          this.measure();
-          this.resize();
-        });
-        this.resizeObserver.observe(this.section);
-      }
-    }
-
-    whenReady(onProgress) {
-      if (this.video.readyState >= 2) {
-        if (onProgress) onProgress(100, 100);
-        return Promise.resolve(true);
-      }
-
-      if (this.readyPromise) return this.readyPromise;
-
-      this.readyPromise = new Promise((resolve) => {
-        let settled = false;
-        let timeoutId;
-
-        const report = () => {
-          if (!onProgress) return;
-          let percent = this.video.readyState >= 1 ? 24 : 8;
-          try {
-            if (this.video.duration > 0 && this.video.buffered.length) {
-              const bufferedEnd = this.video.buffered.end(this.video.buffered.length - 1);
-              percent = Math.max(percent, Math.min(94, Math.round((bufferedEnd / this.video.duration) * 100)));
-            }
-          } catch {
-            // Media ranges can change while the progress event is being handled.
-          }
-          onProgress(percent, 100);
-        };
-
-        const finish = (success) => {
-          if (settled) return;
-          settled = true;
-          window.clearTimeout(timeoutId);
-          this.video.removeEventListener("progress", report);
-          this.video.removeEventListener("loadedmetadata", report);
-          this.video.removeEventListener("loadeddata", loaded);
-          this.video.removeEventListener("error", failed);
-          if (success && onProgress) onProgress(100, 100);
-          resolve(success);
-        };
-
-        const loaded = () => finish(true);
-        const failed = () => finish(false);
-
-        this.video.addEventListener("progress", report);
-        this.video.addEventListener("loadedmetadata", report);
-        this.video.addEventListener("loadeddata", loaded, { once: true });
-        this.video.addEventListener("error", failed, { once: true });
-        timeoutId = window.setTimeout(() => finish(this.video.readyState >= 2), 20000);
-
-        report();
-        if (this.video.networkState === HTMLMediaElement.NETWORK_EMPTY) this.video.load();
-      });
-
-      return this.readyPromise;
-    }
-
-    primePlayback() {
-      if (this.primed || this.priming || this.destroyed) return;
-      this.priming = true;
-      const targetTime = this.pendingTime;
-      let playPromise;
-
-      try {
-        playPromise = this.video.play();
-      } catch {
-        this.priming = false;
-        return;
-      }
-
-      if (!playPromise || typeof playPromise.then !== "function") {
-        this.video.pause();
-        this.primed = true;
-        this.priming = false;
-        this.pendingTime = targetTime;
-        this.applyTargetTime(true);
-        return;
-      }
-
-      playPromise
-        .then(() => {
-          this.video.pause();
-          this.primed = true;
-          this.priming = false;
-          this.pendingTime = targetTime;
-          this.applyTargetTime(true);
-        })
-        .catch(() => {
-          this.priming = false;
-        });
-    }
-
-    startFullLoad() {
-      if (this.didStartFullLoad || this.destroyed) return;
-      this.didStartFullLoad = true;
-      this.video.preload = "auto";
-      if (this.failed || this.video.networkState === HTMLMediaElement.NETWORK_EMPTY) {
-        this.failed = false;
-        this.readyPromise = null;
-        this.video.load();
-      }
-      this.whenReady().then((success) => {
-        if (success) {
-          if (!directMobileScrub) this.primePlayback();
-          this.applyTargetTime(true);
-        }
-      });
-    }
-
-    measure() {
-      const rect = this.section.getBoundingClientRect();
-      this.top = rect.top + window.scrollY;
-      this.distance = Math.max(1, this.section.offsetHeight - window.innerHeight);
-    }
-
-    resize() {
-      this.applyTargetTime(true);
-    }
-
-    setTarget(scrollY) {
-      this.targetProgress = clamp((scrollY - this.top) / this.distance);
-
-      if (directMobileScrub) {
-        this.currentProgress = this.targetProgress;
-        this.applyTargetTime();
-        this.updateScenes(this.currentProgress);
-      }
-    }
-
-    applyTargetTime(force = false) {
-      if (this.video.readyState < 1 || !Number.isFinite(this.video.duration) || this.video.duration <= 0) {
-        return false;
-      }
-
-      const lastUsableFrame = Math.max(0, this.video.duration - 1 / 48);
-      this.pendingTime = clamp(this.currentProgress) * lastUsableFrame;
-
-      if (!force && this.video.seeking) return false;
-      if (Math.abs(this.video.currentTime - this.pendingTime) < 1 / 48) return true;
-
-      try {
-        this.video.currentTime = this.pendingTime;
-        return true;
-      } catch {
-        return false;
-      }
-    }
-
-    updateScenes(progress) {
-      this.scenes.forEach((scene) => {
-        const from = Number(scene.dataset.from) || 0;
-        const to = Number(scene.dataset.to) || 1;
-        const fadeLength = Math.min(0.055, Math.max(0.025, (to - from) * 0.28));
-        const fadeIn = from === 0 ? 1 : smoothstep(from, from + fadeLength, progress);
-        const fadeOut = to === 1 ? 1 : 1 - smoothstep(to - fadeLength, to, progress);
-        const opacity = clamp(fadeIn * fadeOut);
-
-        scene.style.opacity = opacity.toFixed(3);
-        scene.classList.toggle("is-visible", opacity > 0.08);
-        scene.setAttribute("aria-hidden", opacity > 0.08 ? "false" : "true");
-      });
-
-      if (this.progressBar) {
-        this.progressBar.style.setProperty("--progress", `${(progress * 100).toFixed(2)}%`);
-      }
-
-      if (this.scrollCue) {
-        this.scrollCue.style.setProperty("--cue-opacity", String(1 - smoothstep(0.02, 0.08, progress)));
-      }
-
-      if (this.chapterDots.length) {
-        const active = Math.min(this.chapterDots.length - 1, Math.floor(progress * this.chapterDots.length));
-        this.chapterDots.forEach((dot, index) => dot.classList.toggle("is-active", index === active));
-      }
-    }
-
-    step() {
-      if (reduceMotion || this.destroyed) return false;
-
-      if (directMobileScrub) {
-        this.currentProgress = this.targetProgress;
-        this.applyTargetTime();
-        this.updateScenes(this.currentProgress);
-        return false;
-      }
-
-      const delta = this.targetProgress - this.currentProgress;
-      if (Math.abs(delta) > 0.00008) {
-        const damping = Math.abs(delta) > 0.25 ? 0.16 : 0.115;
-        this.currentProgress = lerp(this.currentProgress, this.targetProgress, damping);
-      } else {
-        this.currentProgress = this.targetProgress;
-      }
-
-      this.applyTargetTime();
-      this.updateScenes(this.currentProgress);
-
-      return Math.abs(this.targetProgress - this.currentProgress) > 0.00008;
-    }
-  }
-
   function initSequences() {
     if (reduceMotion) return;
 
     document.querySelectorAll("[data-sequence]").forEach((section) => {
-      const player = new VideoSequence(section);
+      const player = new FrameSequence(section);
       sequencePlayers.push(player);
     });
-
-    const unlockSequences = () => {
-      sequencePlayers.forEach((player) => {
-        if (!player.primed) player.primePlayback();
-      });
-    };
-
-    window.addEventListener("touchstart", unlockSequences, { passive: true });
-    window.addEventListener("pointerdown", unlockSequences, { passive: true });
 
     const priorityPlayer = sequencePlayers.find((player) => player.priority);
     const loader = document.querySelector("[data-loader]");
@@ -807,15 +534,23 @@
       }, wait);
     };
 
-    if (priorityPlayer) {
-      priorityPlayer.whenReady(updateLoader).then((success) => {
-        if (success) {
-          if (!directMobileScrub) priorityPlayer.primePlayback();
-          priorityPlayer.applyTargetTime(true);
-        }
+    if (priorityPlayer?.packPattern) {
+      priorityPlayer.loadPack(0, updateLoader).then(async () => {
+        await priorityPlayer.decode(0, 100);
+        priorityPlayer.draw(0);
+        priorityPlayer.warmDecode(0);
         finishLoader();
-        window.setTimeout(() => priorityPlayer.startFullLoad(), 120);
+        window.setTimeout(() => priorityPlayer.startFullLoad(), 150);
       });
+    } else if (priorityPlayer) {
+      priorityPlayer.decode(0, 100).then(() => priorityPlayer.draw(0));
+      priorityPlayer
+        .preloadRange(0, isMobile ? 28 : 42, 80, updateLoader)
+        .then(() => {
+          priorityPlayer.warmDecode(0);
+          finishLoader();
+          window.setTimeout(() => priorityPlayer.startFullLoad(), 200);
+        });
     } else {
       finishLoader();
     }
@@ -830,6 +565,7 @@
           player.nearViewport = entry.isIntersecting;
           if (entry.isIntersecting) {
             player.startFullLoad();
+            player.warmDecode(player.frameIndex());
             requestRender();
           }
         });
@@ -839,27 +575,10 @@
 
     sequencePlayers.forEach((player) => sequenceObserver.observe(player.section));
 
-    let scrollSettleTimer;
-
-    const settleScrollFrame = () => {
-      const scrollY = window.scrollY;
-      sequencePlayers.forEach((player) => {
-        player.setTarget(scrollY);
-        player.currentProgress = player.targetProgress;
-        player.applyTargetTime(true);
-        player.updateScenes(player.currentProgress);
-      });
-    };
-
     const updateScroll = () => {
       const scrollY = window.scrollY;
       sequencePlayers.forEach((player) => player.setTarget(scrollY));
       requestRender();
-
-      if (directMobileScrub) {
-        window.clearTimeout(scrollSettleTimer);
-        scrollSettleTimer = window.setTimeout(settleScrollFrame, 120);
-      }
     };
 
     window.addEventListener("scroll", updateScroll, { passive: true });
@@ -881,63 +600,54 @@
       }, 250);
     });
 
-    window.addEventListener("pageshow", () => {
-      sequencePlayers.forEach((player) => {
-        player.measure();
-        if (player.failed) player.startFullLoad();
-      });
-      updateScroll();
-      settleScrollFrame();
-    });
-
-    document.addEventListener("visibilitychange", () => {
-      if (document.visibilityState !== "visible") return;
-      sequencePlayers.forEach((player) => player.measure());
-      updateScroll();
-      settleScrollFrame();
-    });
-
     updateScroll();
   }
 
   function initHeaderAndMenu() {
     const header = document.querySelector("[data-header]");
-    const mobileMenu = document.querySelector("[data-mobile-menu]");
-    const menuToggle = mobileMenu?.querySelector(".menu-toggle");
-    const mobileNav = mobileMenu?.querySelector(".mobile-nav");
-    let menuOpenedAt = 0;
+    const menuToggle = document.querySelector("[data-menu-toggle]");
+    const mobileNav = document.querySelector("[data-mobile-nav]");
+    const desktopMedia = window.matchMedia("(min-width: 981px)");
 
     const updateHeader = () => {
       header?.classList.toggle("is-scrolled", window.scrollY > 24);
-      if (mobileMenu?.open && Math.abs(window.scrollY - menuOpenedAt) > 8) {
-        closeMenu();
-      }
     };
 
-    const closeMenu = () => {
-      if (!mobileMenu || !menuToggle) return;
-      mobileMenu.open = false;
-      menuToggle.setAttribute("aria-label", "Navigation öffnen");
+    const setMenuState = (open, returnFocus = false) => {
+      if (!header || !menuToggle || !mobileNav) return;
+
+      const shouldOpen = Boolean(open) && !desktopMedia.matches;
+      menuToggle.setAttribute("aria-expanded", String(shouldOpen));
+      menuToggle.setAttribute("aria-label", shouldOpen ? "Menü schließen" : "Menü öffnen");
+      mobileNav.classList.toggle("is-open", shouldOpen);
+      mobileNav.setAttribute("aria-hidden", String(!shouldOpen));
+      if ("inert" in mobileNav) mobileNav.inert = !shouldOpen;
+      header.classList.toggle("is-menu-open", shouldOpen);
+      document.body.classList.toggle("menu-open", shouldOpen);
+
+      if (!shouldOpen && returnFocus) menuToggle.focus({ preventScroll: true });
     };
 
-    mobileMenu?.addEventListener("toggle", () => {
-      menuToggle?.setAttribute("aria-label", mobileMenu.open ? "Navigation schließen" : "Navigation öffnen");
-      if (mobileMenu.open) menuOpenedAt = window.scrollY;
+    menuToggle?.addEventListener("click", () => {
+      const open = menuToggle.getAttribute("aria-expanded") === "true";
+      setMenuState(!open);
     });
 
-    mobileNav?.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMenu));
-    document.addEventListener("pointerdown", (event) => {
-      if (!mobileMenu?.open) return;
-      if (header?.contains(event.target)) return;
-      closeMenu();
-    });
+    mobileNav?.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => setMenuState(false)));
     document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") closeMenu();
+      if (event.key === "Escape" && menuToggle?.getAttribute("aria-expanded") === "true") {
+        setMenuState(false, true);
+      }
     });
     window.addEventListener("scroll", updateHeader, { passive: true });
-    window.addEventListener("resize", () => {
-      if (window.innerWidth > 980) closeMenu();
-    });
+    const handleBreakpointChange = () => setMenuState(false);
+    if (typeof desktopMedia.addEventListener === "function") {
+      desktopMedia.addEventListener("change", handleBreakpointChange);
+    } else {
+      desktopMedia.addListener?.(handleBreakpointChange);
+    }
+    window.addEventListener("pageshow", () => setMenuState(false));
+    setMenuState(false);
     updateHeader();
   }
 
@@ -1035,9 +745,9 @@
   initAutoplayVideos();
   initPointerAura();
 
-  if (document.readyState !== "loading") {
+  if (document.readyState === "complete") {
     initSequences();
   } else {
-    document.addEventListener("DOMContentLoaded", initSequences, { once: true });
+    window.addEventListener("load", initSequences, { once: true });
   }
 })();
