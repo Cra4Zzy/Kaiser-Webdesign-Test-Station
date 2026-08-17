@@ -2,17 +2,24 @@
 <html lang="de">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Ausgewählte Video- und Social-Media-Arbeiten von Kaiser-Webdesign.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <meta name="theme-color" content="#080808">
+  <meta name="description" content="Ausgewählte Arbeiten von Kaiser-Webdesign aus Video, Social Media und visueller Gestaltung.">
   <title>Kaiser-Webdesign — Portfolio</title>
-  <link rel="stylesheet" href="styles.css">
-  <script defer src="script.js"></script>
+  <link rel="stylesheet" href="portfolio-v7.css?v=7">
+  <script defer src="portfolio-v7.js?v=7"></script>
 </head>
 <body>
-  <header class="header">
-    <a href="#top" class="logo"><img src="assets/img/kaiser-logo.png" alt="Kaiser-Webdesign"></a>
-    <a href="#arbeiten" class="navlink">Arbeiten ↓</a>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Zum Anfang">
+      <img src="assets/img/kaiser-logo-v7.png?v=7" alt="Kaiser-Webdesign">
+    </a>
+    <a class="nav-link" href="#arbeiten">Arbeiten <span>↓</span></a>
   </header>
 
   <main id="top">
@@ -23,43 +30,62 @@
         <p>Eine kleine Auswahl meiner Arbeiten aus Video, Social Media und visueller Gestaltung.</p>
         <small>Weitere Beispiele gerne auf Anfrage.</small>
       </div>
-      <div class="hero-visual"><img src="assets/img/kaiser-hero.jpg" alt="Kaiser-Webdesign"></div>
+      <div class="hero-visual">
+        <img src="assets/img/kaiser-hero-v7.jpg?v=7" alt="Kaiser-Webdesign Gestaltung">
+      </div>
     </section>
 
     <section class="work" id="arbeiten">
-      <div class="section-head"><span>Auswahl</span><span>01 — 02</span></div>
-      <div class="projects">
+      <div class="section-head">
+        <span>Auswahl</span>
+        <span>01 — 02</span>
+      </div>
+
+      <div class="project-grid">
         <article class="project">
-          <div class="video-shell">
-            <div class="ambient" style="background-image:url('assets/img/haarstudio.jpg')"></div>
-            <video muted playsinline loop preload="metadata" poster="assets/img/haarstudio.jpg">
-              <source src="assets/video/haarstudio.mp4" type="video/mp4">
-            </video>
-            <button class="sound" type="button">Ton an</button>
-          </div>
-          <div class="meta"><span>01</span><div><h2>Haarstudio</h2><p>Markenfilm / Social Media</p></div></div>
+          <button class="project-card" type="button" data-title="Haarstudio" data-meta="Markenfilm / Social Media" data-video="assets/video/haarstudio-hq-v7.mp4?v=7">
+            <div class="cover">
+              <img src="assets/img/haarstudio-cover-v7.jpg?v=7" alt="Haarstudio Projektcover">
+              <span class="open-chip">Projekt ansehen ↗</span>
+            </div>
+            <div class="project-meta">
+              <span class="index">01</span>
+              <div>
+                <h2>Haarstudio</h2>
+                <p>Markenfilm / Social Media</p>
+              </div>
+            </div>
+          </button>
         </article>
 
-        <article class="project project-offset">
-          <div class="video-shell">
-            <div class="ambient" style="background-image:url('assets/img/barbershop.jpg')"></div>
-            <video muted playsinline loop preload="metadata" poster="assets/img/barbershop.jpg">
-              <source src="assets/video/barbershop.mp4" type="video/mp4">
-            </video>
-            <button class="sound" type="button">Ton an</button>
-          </div>
-          <div class="meta"><span>02</span><div><h2>Barbershop</h2><p>Kurzvideo / Werbeclip</p></div></div>
+        <article class="project project--offset">
+          <button class="project-card" type="button" data-title="Barbershop" data-meta="Kurzvideo / Werbeclip" data-video="assets/video/barbershop-hq-v7.mp4?v=7">
+            <div class="cover">
+              <img src="assets/img/barbershop-cover-v7.jpg?v=7" alt="Barbershop Projektcover">
+              <span class="open-chip">Projekt ansehen ↗</span>
+            </div>
+            <div class="project-meta">
+              <span class="index">02</span>
+              <div>
+                <h2>Barbershop</h2>
+                <p>Kurzvideo / Werbeclip</p>
+              </div>
+            </div>
+          </button>
         </article>
       </div>
     </section>
 
-    <section class="more">
-      <div class="section-head"><span>Weitere Arbeiten</span><span>Auswahl auf Anfrage</span></div>
-      <div class="capabilities">
-        <div>Performance Ads</div>
-        <div>Podcast-Shortform</div>
-        <div>Social-Media-Clips</div>
-        <div>Kampagnen-Design</div>
+    <section class="services">
+      <div class="section-head">
+        <span>Weitere Arbeiten</span>
+        <span>Auswahl auf Anfrage</span>
+      </div>
+      <div class="service-grid">
+        <div><span>01</span><strong>Performance Ads</strong></div>
+        <div><span>02</span><strong>Podcast-Shortform</strong></div>
+        <div><span>03</span><strong>Social-Media-Clips</strong></div>
+        <div><span>04</span><strong>Kampagnen-Design</strong></div>
       </div>
     </section>
 
@@ -70,6 +96,22 @@
     </section>
   </main>
 
-  <footer><img src="assets/img/kaiser-logo.png" alt="Kaiser-Webdesign"><a href="#top">Nach oben ↑</a></footer>
+  <footer class="footer">
+    <img src="assets/img/kaiser-logo-v7.png?v=7" alt="Kaiser-Webdesign">
+    <a href="#top">Nach oben ↑</a>
+  </footer>
+
+  <dialog class="modal" id="projectModal" aria-label="Projektvideo">
+    <button class="close" type="button" aria-label="Schließen">×</button>
+    <div class="modal-inner">
+      <div class="modal-copy">
+        <span id="modalMeta"></span>
+        <h2 id="modalTitle"></h2>
+      </div>
+      <div class="video-frame">
+        <video id="modalVideo" controls playsinline preload="metadata"></video>
+      </div>
+    </div>
+  </dialog>
 </body>
 </html>
