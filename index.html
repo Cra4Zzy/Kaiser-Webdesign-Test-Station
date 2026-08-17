@@ -1,241 +1,75 @@
 <!doctype html>
 <html lang="de">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Eine kuratierte Auswahl aus Video-Editing, Social Content und Design-Arbeiten von Kaiser-Webdesign." />
-  <meta name="theme-color" content="#090909" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Ausgewählte Video- und Social-Media-Arbeiten von Kaiser-Webdesign.">
+  <meta name="theme-color" content="#080808">
   <title>Kaiser-Webdesign — Portfolio</title>
-  <link rel="stylesheet" href="styles.css" />
-  <script defer src="media-01.js"></script>
-  <script defer src="media-02.js"></script>
-  <script defer src="media-03.js"></script>
-  <script defer src="media-04.js"></script>
-  <script defer src="media-05.js"></script>
-  <script defer src="media-06.js"></script>
-  <script defer src="media-07.js"></script>
-  <script defer src="media-08.js"></script>
-  <script defer src="media-09.js"></script>
+  <link rel="stylesheet" href="styles.css">
   <script defer src="script.js"></script>
 </head>
 <body>
-  <div class="page-noise" aria-hidden="true"></div>
-
-  <header class="site-header">
-    <a class="brand" href="#top" aria-label="Zum Seitenanfang">
-      <img class="brand-logo" data-media="images-kaiser-logo" alt="Kaiser-Webdesign Logo" />
-    </a>
-    <a class="header-link" href="#work">Arbeiten <span>↓</span></a>
+  <header class="header">
+    <a href="#top" class="logo"><img src="assets/img/kaiser-logo.png" alt="Kaiser-Webdesign"></a>
+    <a href="#arbeiten" class="navlink">Arbeiten ↓</a>
   </header>
 
   <main id="top">
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-kicker">Kaiser-Webdesign / Portfolio</div>
-      <h1 id="hero-title">AUSGEWÄHLTE<br>ARBEITEN.</h1>
-      <div class="hero-meta">
-        <p>Eine reduzierte Auswahl meiner Arbeiten aus Video, Social Media und Design.</p>
-        <p class="muted">Der Fokus liegt auf dem Portfolio. Weitere Beispiele gerne auf Anfrage.</p>
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow">Kaiser-Webdesign / Portfolio</span>
+        <h1>AUSGEWÄHLTE<br>ARBEITEN.</h1>
+        <p>Eine kleine Auswahl meiner Arbeiten aus Video, Social Media und visueller Gestaltung.</p>
+        <small>Weitere Beispiele gerne auf Anfrage.</small>
       </div>
-      <div class="hero-sidecard" aria-hidden="true">
-        <img data-media="images-kaiser-logo" alt="" />
-        <span>Portfolio / Auswahl</span>
-      </div>
-      <div class="hero-rule" aria-hidden="true"></div>
+      <div class="hero-visual"><img src="assets/img/kaiser-hero.jpg" alt="Kaiser-Webdesign"></div>
     </section>
 
-    <section class="work" id="work" aria-labelledby="work-title">
-      <div class="section-head">
-        <h2 id="work-title">Portfolio</h2>
-        <span>01 — 06</span>
-      </div>
-
-      <div class="project-grid">
-        <article class="project project--wide" data-project="beauty">
-          <button class="project-card" type="button" aria-label="Projekt Haarstudio öffnen"
-            data-video-key="videos-beauty-studio"
-            data-title="Haarstudio"
-            data-meta="Markenfilm / Social Media"
-            data-poster-key="images-beauty-studio">
-            <div class="media-stage">
-              <div class="media-blur" aria-hidden="true"></div>
-              <video class="card-video" muted playsinline loop preload="none" data-media="videos-beauty-studio" data-poster="images-beauty-studio"></video>
-              <div class="play-chip"><span>▶</span> Ansehen</div>
-            </div>
-            <div class="project-info">
-              <span class="project-index">01</span>
-              <div>
-                <h3>Haarstudio</h3>
-                <p>Markenfilm / Social Media</p>
-              </div>
-            </div>
-          </button>
+    <section class="work" id="arbeiten">
+      <div class="section-head"><span>Auswahl</span><span>01 — 02</span></div>
+      <div class="projects">
+        <article class="project">
+          <div class="video-shell">
+            <div class="ambient" style="background-image:url('assets/img/haarstudio.jpg')"></div>
+            <video muted playsinline loop preload="metadata" poster="assets/img/haarstudio.jpg">
+              <source src="assets/video/haarstudio.mp4" type="video/mp4">
+            </video>
+            <button class="sound" type="button">Ton an</button>
+          </div>
+          <div class="meta"><span>01</span><div><h2>Haarstudio</h2><p>Markenfilm / Social Media</p></div></div>
         </article>
 
-        <article class="project" data-project="grooming">
-          <button class="project-card" type="button" aria-label="Projekt Barbershop öffnen"
-            data-video-key="videos-grooming-studio"
-            data-title="Barbershop"
-            data-meta="Kurzvideo / Werbeclip"
-            data-poster-key="images-grooming-studio">
-            <div class="media-stage">
-              <div class="media-blur" aria-hidden="true"></div>
-              <video class="card-video" muted playsinline loop preload="none" data-media="videos-grooming-studio" data-poster="images-grooming-studio"></video>
-              <div class="play-chip"><span>▶</span> Ansehen</div>
-            </div>
-            <div class="project-info">
-              <span class="project-index">02</span>
-              <div>
-                <h3>Barbershop</h3>
-                <p>Kurzvideo / Werbeclip</p>
-              </div>
-            </div>
-          </button>
-        </article>
-
-        <article class="project" data-project="industrial">
-          <button class="project-card" type="button" aria-label="Projekt Schulungsbetrieb öffnen"
-            data-video-key="videos-industrial-training"
-            data-title="Schulungsbetrieb"
-            data-meta="Werbeclip / Kampagne"
-            data-poster-key="images-industrial-training">
-            <div class="media-stage">
-              <div class="media-blur" aria-hidden="true"></div>
-              <video class="card-video" muted playsinline loop preload="none" data-media="videos-industrial-training" data-poster="images-industrial-training"></video>
-              <div class="play-chip"><span>▶</span> Ansehen</div>
-            </div>
-            <div class="project-info">
-              <span class="project-index">03</span>
-              <div>
-                <h3>Schulungsbetrieb</h3>
-                <p>Werbeclip / Kampagne</p>
-              </div>
-            </div>
-          </button>
-        </article>
-
-        <article class="project project--wide" data-project="performance">
-          <button class="project-card" type="button" aria-label="Projekt Coaching-Kampagne öffnen"
-            data-video-key="videos-performance-coaching"
-            data-title="Coaching-Kampagne"
-            data-meta="Werbeanzeige / Kurzformat"
-            data-poster-key="images-performance-coaching">
-            <div class="media-stage">
-              <div class="media-blur" aria-hidden="true"></div>
-              <video class="card-video" muted playsinline loop preload="none" data-media="videos-performance-coaching" data-poster="images-performance-coaching"></video>
-              <div class="play-chip"><span>▶</span> Ansehen</div>
-            </div>
-            <div class="project-info">
-              <span class="project-index">04</span>
-              <div>
-                <h3>Coaching-Kampagne</h3>
-                <p>Werbeanzeige / Kurzformat</p>
-              </div>
-            </div>
-          </button>
-        </article>
-
-        <article class="project" data-project="creative">
-          <button class="project-card" type="button" aria-label="Projekt Kreativkampagne öffnen"
-            data-video-key="videos-creative-campaign"
-            data-title="Kreativkampagne"
-            data-meta="Markenwerbung / Social Media"
-            data-poster-key="images-creative-campaign">
-            <div class="media-stage">
-              <div class="media-blur" aria-hidden="true"></div>
-              <video class="card-video" muted playsinline loop preload="none" data-media="videos-creative-campaign" data-poster="images-creative-campaign"></video>
-              <div class="play-chip"><span>▶</span> Ansehen</div>
-            </div>
-            <div class="project-info">
-              <span class="project-index">05</span>
-              <div>
-                <h3>Kreativkampagne</h3>
-                <p>Markenwerbung / Social Media</p>
-              </div>
-            </div>
-          </button>
-        </article>
-
-        <article class="project" data-project="podcast">
-          <button class="project-card" type="button" aria-label="Projekt Podcast-Ausschnitt öffnen"
-            data-video-key="videos-podcast-shortform"
-            data-title="Podcast-Ausschnitt"
-            data-meta="Interview / Social Media"
-            data-poster-key="images-podcast-shortform">
-            <div class="media-stage">
-              <div class="media-blur" aria-hidden="true"></div>
-              <video class="card-video" muted playsinline loop preload="none" data-media="videos-podcast-shortform" data-poster="images-podcast-shortform"></video>
-              <div class="play-chip"><span>▶</span> Ansehen</div>
-            </div>
-            <div class="project-info">
-              <span class="project-index">06</span>
-              <div>
-                <h3>Podcast-Ausschnitt</h3>
-                <p>Interview / Social Media</p>
-              </div>
-            </div>
-          </button>
+        <article class="project project-offset">
+          <div class="video-shell">
+            <div class="ambient" style="background-image:url('assets/img/barbershop.jpg')"></div>
+            <video muted playsinline loop preload="metadata" poster="assets/img/barbershop.jpg">
+              <source src="assets/video/barbershop.mp4" type="video/mp4">
+            </video>
+            <button class="sound" type="button">Ton an</button>
+          </div>
+          <div class="meta"><span>02</span><div><h2>Barbershop</h2><p>Kurzvideo / Werbeclip</p></div></div>
         </article>
       </div>
     </section>
 
-    <section class="designs" aria-labelledby="design-title">
-      <div class="section-head">
-        <h2 id="design-title">Design-Auswahl</h2>
-        <span>Ergänzende Arbeiten</span>
-      </div>
-      <div class="design-grid">
-        <figure class="design design--feature design--brand">
-          <img data-media="images-kaiser-showcase" alt="Kaiser-Webdesign Poster mit Laptop, Outdoor-Arbeitsplatz und Markenlogo" loading="lazy" />
-          <figcaption>Kaiser-Webdesign</figcaption>
-        </figure>
-        <figure class="design">
-          <img data-media="images-avanti-social-01" alt="Social-Media-Design für ein Haarstudio mit Fokus auf Atmosphäre und Markenwirkung" loading="lazy" />
-          <figcaption>Haarstudio Design 01</figcaption>
-        </figure>
-        <figure class="design">
-          <img data-media="images-avanti-social-02" alt="Social-Media-Design für ein Haarstudio mit Fokus auf Dienstleistung und Terminbuchung" loading="lazy" />
-          <figcaption>Haarstudio Design 02</figcaption>
-        </figure>
-        <figure class="design">
-          <img data-media="images-industrial-social-01" alt="Social-Media-Design für eine Schulungs-Kampagne" loading="lazy" />
-          <figcaption>Kampagnendesign 01</figcaption>
-        </figure>
-        <figure class="design">
-          <img data-media="images-industrial-social-02" alt="Social-Media-Design mit Sicherheitsfokus" loading="lazy" />
-          <figcaption>Kampagnendesign 02</figcaption>
-        </figure>
-        <figure class="design">
-          <img data-media="images-industrial-social-03" alt="Poster für eine praxisorientierte Schulungskampagne" loading="lazy" />
-          <figcaption>Kampagnendesign 03</figcaption>
-        </figure>
+    <section class="more">
+      <div class="section-head"><span>Weitere Arbeiten</span><span>Auswahl auf Anfrage</span></div>
+      <div class="capabilities">
+        <div>Performance Ads</div>
+        <div>Podcast-Shortform</div>
+        <div>Social-Media-Clips</div>
+        <div>Kampagnen-Design</div>
       </div>
     </section>
 
-    <section class="outro" id="contact">
-      <p class="eyebrow">Kaiser-Webdesign</p>
+    <section class="outro">
+      <span class="eyebrow">Kaiser-Webdesign</span>
       <h2>MEHR<br>AUF ANFRAGE.</h2>
-      <p>Diese Seite zeigt bewusst nur eine Auswahl meiner Arbeiten und nicht das vollständige Spektrum bisheriger Projekte.</p>
+      <p>Diese Seite zeigt bewusst nur einige Beispiele und nicht das vollständige Spektrum meiner bisherigen Arbeiten.</p>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="footer-brand">
-      <img data-media="images-kaiser-logo" alt="Kaiser-Webdesign Logo" />
-    </div>
-    <a href="#top">Zurück nach oben ↑</a>
-  </footer>
-
-  <dialog class="project-modal" id="project-modal" aria-label="Projekt ansehen">
-    <button class="modal-close" type="button" aria-label="Projekt schließen">×</button>
-    <div class="modal-shell">
-      <div class="modal-copy">
-        <span id="modal-meta">Markenfilm / Social Media</span>
-        <h2 id="modal-title">Haarstudio</h2>
-      </div>
-      <div class="modal-video-wrap">
-        <video id="modal-video" playsinline controls preload="metadata"></video>
-      </div>
-    </div>
-  </dialog>
+  <footer><img src="assets/img/kaiser-logo.png" alt="Kaiser-Webdesign"><a href="#top">Nach oben ↑</a></footer>
 </body>
 </html>
