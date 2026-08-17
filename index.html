@@ -7,15 +7,6 @@
   <meta name="theme-color" content="#090909" />
   <title>Kaiser-Webdesign — Portfolio</title>
   <link rel="stylesheet" href="styles.css" />
-  <script defer src="media-01.js"></script>
-  <script defer src="media-02.js"></script>
-  <script defer src="media-03.js"></script>
-  <script defer src="media-04.js"></script>
-  <script defer src="media-05.js"></script>
-  <script defer src="media-06.js"></script>
-  <script defer src="media-07.js"></script>
-  <script defer src="media-08.js"></script>
-  <script defer src="media-09.js"></script>
   <script defer src="script.js"></script>
 </head>
 <body>
@@ -23,7 +14,7 @@
 
   <header class="site-header">
     <a class="brand" href="#top" aria-label="Zum Seitenanfang">
-      <img class="brand-logo" data-media="images-kaiser-logo" alt="Kaiser-Webdesign Logo" />
+      <img class="brand-logo" src="assets/images/kaiser-logo.webp" alt="Kaiser-Webdesign Logo" />
     </a>
     <a class="header-link" href="#work">Arbeiten <span>↓</span></a>
   </header>
@@ -37,7 +28,7 @@
         <p class="muted">Der Fokus liegt auf dem Portfolio. Weitere Beispiele gerne auf Anfrage.</p>
       </div>
       <div class="hero-sidecard" aria-hidden="true">
-        <img data-media="images-kaiser-logo" alt="" />
+        <img src="assets/images/kaiser-logo.webp" alt="" />
         <span>Portfolio / Auswahl</span>
       </div>
       <div class="hero-rule" aria-hidden="true"></div>
@@ -52,13 +43,13 @@
       <div class="project-grid">
         <article class="project project--wide" data-project="beauty">
           <button class="project-card" type="button" aria-label="Projekt Haarstudio öffnen"
-            data-video-key="videos-beauty-studio"
+            data-video="assets/videos/beauty-studio.mp4"
             data-title="Haarstudio"
             data-meta="Markenfilm / Social Media"
-            data-poster-key="images-beauty-studio">
+            style="--poster:url('assets/images/beauty-studio.jpg')">
             <div class="media-stage">
               <div class="media-blur" aria-hidden="true"></div>
-              <video class="card-video" muted playsinline loop preload="none" data-media="videos-beauty-studio" data-poster="images-beauty-studio"></video>
+              <video class="card-video" muted playsinline loop preload="none" poster="assets/images/beauty-studio.jpg" data-src="assets/videos/beauty-studio.mp4"></video>
               <div class="play-chip"><span>▶</span> Ansehen</div>
             </div>
             <div class="project-info">
@@ -73,13 +64,13 @@
 
         <article class="project" data-project="grooming">
           <button class="project-card" type="button" aria-label="Projekt Barbershop öffnen"
-            data-video-key="videos-grooming-studio"
+            data-video="assets/videos/grooming-studio.mp4"
             data-title="Barbershop"
             data-meta="Kurzvideo / Werbeclip"
-            data-poster-key="images-grooming-studio">
+            style="--poster:url('assets/images/grooming-studio.jpg')">
             <div class="media-stage">
               <div class="media-blur" aria-hidden="true"></div>
-              <video class="card-video" muted playsinline loop preload="none" data-media="videos-grooming-studio" data-poster="images-grooming-studio"></video>
+              <video class="card-video" muted playsinline loop preload="none" poster="assets/images/grooming-studio.jpg" data-src="assets/videos/grooming-studio.mp4"></video>
               <div class="play-chip"><span>▶</span> Ansehen</div>
             </div>
             <div class="project-info">
@@ -94,13 +85,13 @@
 
         <article class="project" data-project="industrial">
           <button class="project-card" type="button" aria-label="Projekt Schulungsbetrieb öffnen"
-            data-video-key="videos-industrial-training"
+            data-video="assets/videos/industrial-training.mp4"
             data-title="Schulungsbetrieb"
             data-meta="Werbeclip / Kampagne"
-            data-poster-key="images-industrial-training">
+            style="--poster:url('assets/images/industrial-training.jpg')">
             <div class="media-stage">
               <div class="media-blur" aria-hidden="true"></div>
-              <video class="card-video" muted playsinline loop preload="none" data-media="videos-industrial-training" data-poster="images-industrial-training"></video>
+              <video class="card-video" muted playsinline loop preload="none" poster="assets/images/industrial-training.jpg" data-src="assets/videos/industrial-training.mp4"></video>
               <div class="play-chip"><span>▶</span> Ansehen</div>
             </div>
             <div class="project-info">
@@ -115,13 +106,13 @@
 
         <article class="project project--wide" data-project="performance">
           <button class="project-card" type="button" aria-label="Projekt Coaching-Kampagne öffnen"
-            data-video-key="videos-performance-coaching"
+            data-video="assets/videos/performance-coaching.mp4"
             data-title="Coaching-Kampagne"
             data-meta="Werbeanzeige / Kurzformat"
-            data-poster-key="images-performance-coaching">
+            style="--poster:url('assets/images/performance-coaching.jpg')">
             <div class="media-stage">
               <div class="media-blur" aria-hidden="true"></div>
-              <video class="card-video" muted playsinline loop preload="none" data-media="videos-performance-coaching" data-poster="images-performance-coaching"></video>
+              <video class="card-video" muted playsinline loop preload="none" poster="assets/images/performance-coaching.jpg" data-src="assets/videos/performance-coaching.mp4"></video>
               <div class="play-chip"><span>▶</span> Ansehen</div>
             </div>
             <div class="project-info">
@@ -136,13 +127,13 @@
 
         <article class="project" data-project="creative">
           <button class="project-card" type="button" aria-label="Projekt Kreativkampagne öffnen"
-            data-video-key="videos-creative-campaign"
+            data-video="assets/videos/creative-campaign.mp4"
             data-title="Kreativkampagne"
             data-meta="Markenwerbung / Social Media"
-            data-poster-key="images-creative-campaign">
+            style="--poster:url('assets/images/creative-campaign.jpg')">
             <div class="media-stage">
               <div class="media-blur" aria-hidden="true"></div>
-              <video class="card-video" muted playsinline loop preload="none" data-media="videos-creative-campaign" data-poster="images-creative-campaign"></video>
+              <video class="card-video" muted playsinline loop preload="none" poster="assets/images/creative-campaign.jpg" data-src="assets/videos/creative-campaign.mp4"></video>
               <div class="play-chip"><span>▶</span> Ansehen</div>
             </div>
             <div class="project-info">
@@ -157,13 +148,13 @@
 
         <article class="project" data-project="podcast">
           <button class="project-card" type="button" aria-label="Projekt Podcast-Ausschnitt öffnen"
-            data-video-key="videos-podcast-shortform"
+            data-video="assets/videos/podcast-shortform.mp4"
             data-title="Podcast-Ausschnitt"
             data-meta="Interview / Social Media"
-            data-poster-key="images-podcast-shortform">
+            style="--poster:url('assets/images/podcast-shortform.jpg')">
             <div class="media-stage">
               <div class="media-blur" aria-hidden="true"></div>
-              <video class="card-video" muted playsinline loop preload="none" data-media="videos-podcast-shortform" data-poster="images-podcast-shortform"></video>
+              <video class="card-video" muted playsinline loop preload="none" poster="assets/images/podcast-shortform.jpg" data-src="assets/videos/podcast-shortform.mp4"></video>
               <div class="play-chip"><span>▶</span> Ansehen</div>
             </div>
             <div class="project-info">
@@ -185,27 +176,27 @@
       </div>
       <div class="design-grid">
         <figure class="design design--feature design--brand">
-          <img data-media="images-kaiser-showcase" alt="Kaiser-Webdesign Poster mit Laptop, Outdoor-Arbeitsplatz und Markenlogo" loading="lazy" />
+          <img src="assets/images/kaiser-showcase.webp" alt="Kaiser-Webdesign Poster mit Laptop, Outdoor-Arbeitsplatz und Markenlogo" loading="lazy" />
           <figcaption>Kaiser-Webdesign</figcaption>
         </figure>
         <figure class="design">
-          <img data-media="images-avanti-social-01" alt="Social-Media-Design für ein Haarstudio mit Fokus auf Atmosphäre und Markenwirkung" loading="lazy" />
+          <img src="assets/images/avanti-social-01.webp" alt="Social-Media-Design für ein Haarstudio mit Fokus auf Atmosphäre und Markenwirkung" loading="lazy" />
           <figcaption>Haarstudio Design 01</figcaption>
         </figure>
         <figure class="design">
-          <img data-media="images-avanti-social-02" alt="Social-Media-Design für ein Haarstudio mit Fokus auf Dienstleistung und Terminbuchung" loading="lazy" />
+          <img src="assets/images/avanti-social-02.webp" alt="Social-Media-Design für ein Haarstudio mit Fokus auf Dienstleistung und Terminbuchung" loading="lazy" />
           <figcaption>Haarstudio Design 02</figcaption>
         </figure>
         <figure class="design">
-          <img data-media="images-industrial-social-01" alt="Social-Media-Design für eine Schulungs-Kampagne" loading="lazy" />
+          <img src="assets/images/industrial-social-01.webp" alt="Social-Media-Design für eine Schulungs-Kampagne" loading="lazy" />
           <figcaption>Kampagnendesign 01</figcaption>
         </figure>
         <figure class="design">
-          <img data-media="images-industrial-social-02" alt="Social-Media-Design mit Sicherheitsfokus" loading="lazy" />
+          <img src="assets/images/industrial-social-02.webp" alt="Social-Media-Design mit Sicherheitsfokus" loading="lazy" />
           <figcaption>Kampagnendesign 02</figcaption>
         </figure>
         <figure class="design">
-          <img data-media="images-industrial-social-03" alt="Poster für eine praxisorientierte Schulungskampagne" loading="lazy" />
+          <img src="assets/images/industrial-social-03.webp" alt="Poster für eine praxisorientierte Schulungskampagne" loading="lazy" />
           <figcaption>Kampagnendesign 03</figcaption>
         </figure>
       </div>
@@ -220,7 +211,7 @@
 
   <footer class="site-footer">
     <div class="footer-brand">
-      <img data-media="images-kaiser-logo" alt="Kaiser-Webdesign Logo" />
+      <img src="assets/images/kaiser-logo.webp" alt="Kaiser-Webdesign Logo" />
     </div>
     <a href="#top">Zurück nach oben ↑</a>
   </footer>
