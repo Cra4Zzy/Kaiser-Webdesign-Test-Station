@@ -15,9 +15,16 @@ index.html          Startseite
 impressum.html      Impressum
 datenschutz.html    Datenschutzhinweise
 css/style.css       vollständiges Design und Responsive-Regeln
-js/main.js          Navigation, Animationen, Galerie und Anfragefunktion
-images/             Logo, Projektbilder und Social-Preview
+js/main.js          Navigation, Animationen, Swipe-Galerie und Anfragefunktion
+images/             Logo, Kundenfotos, Projektbilder und Social-Preview
 fonts/              lokal eingebundene Schriftarten
+
+AKTUELLE BESONDERHEITEN
+-----------------------
+- Hero und Referenzgalerie verwenden die neuen Kundenfotos.
+- Die Projektgalerie ist per Touch, Maus, Tastatur und Pfeiltasten bedienbar.
+- Der mobile Header besitzt ein kompaktes Dropdown-Menü; der Schließen-Button
+  bleibt erreichbar und die Seite kann auch bei geöffnetem Menü weiter scrollen.
 
 VOR VERÖFFENTLICHUNG
 --------------------

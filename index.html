@@ -32,7 +32,7 @@
         "@type": "RoofingContractor",
         "name": "Peter Kopp Dachdeckerei",
         "url": "https://www.kopp-dach.de/",
-        "telephone": "+49 173 8774230",
+        "telephone": ["+49 171 5856894", "+49 173 8774230"],
         "email": "info@kopp-dach.de",
         "address": {
           "@type": "PostalAddress",
@@ -49,12 +49,14 @@
   <body>
     <main>
       <section class="hero" id="start">
-        <img class="hero-image" src="images/hero-original.jpeg" alt="Neu eingedecktes dunkles Ziegeldach von Peter Kopp" fetchpriority="high">
+        <img class="hero-image" src="images/hero-kopp-team.jpeg" alt="Peter Kopp und sein Team bei der Neueindeckung eines Ziegeldachs" fetchpriority="high">
         <div class="hero-shade"></div>
 
         <header class="site-header">
           <a class="brand" href="#start" aria-label="Peter Kopp Startseite">
-            <img src="images/logo.png" alt="Peter Kopp" width="228" height="79">
+            <span class="brand-lockup">
+              <img src="images/logo-fahrzeug.png" alt="Peter Kopp – Firma Kopp ist top!" width="260" height="130">
+            </span>
           </a>
 
           <nav class="desktop-nav" aria-label="Hauptnavigation">
@@ -64,18 +66,30 @@
             <a href="#jobs">Jobs</a>
           </nav>
 
-          <a class="header-cta" href="tel:+491738774230">
-            <span>Direkt anrufen</span>
-            <strong>0173 877 4230</strong>
-          </a>
+          <div class="header-phones" aria-label="Telefonnummern">
+            <a class="header-cta" href="tel:+491715856894">
+              <span>Mobil erreichbar</span>
+              <strong>+49 171 5856894</strong>
+            </a>
+            <a class="header-cta" href="tel:+491738774230">
+              <span>Telefon</span>
+              <strong>0173 877 4230</strong>
+            </a>
+          </div>
 
-          <button class="menu-toggle" type="button" aria-label="Menü öffnen" aria-expanded="false">
+          <button class="menu-toggle" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobile-navigation">
             <span></span>
             <span></span>
           </button>
         </header>
 
-        <div class="mobile-panel" aria-hidden="true">
+        <div class="trade-strip" aria-label="Leistungsbereiche">
+          <span>Dach- &amp; Fassadenbau</span><i aria-hidden="true"></i>
+          <span>Spenglerarbeiten</span><i aria-hidden="true"></i>
+          <span>Dachfenster</span>
+        </div>
+
+        <div class="mobile-panel" id="mobile-navigation" aria-hidden="true">
           <nav aria-label="Mobile Navigation">
             <a href="#leistungen">Leistungen</a>
             <a href="#projekte">Projekte</a>
@@ -83,7 +97,11 @@
             <a href="#jobs">Jobs</a>
             <a href="#kontakt">Kontakt</a>
           </nav>
-          <a href="tel:+491738774230" class="mobile-phone">0173 877 4230</a>
+          <p class="mobile-trade-line">Dach- &amp; Fassadenbau · Spenglerarbeiten · Dachfenster</p>
+          <div class="mobile-phones">
+            <a href="tel:+491715856894" class="mobile-phone"><small>Mobil erreichbar</small>+49 171 5856894</a>
+            <a href="tel:+491738774230" class="mobile-phone mobile-phone-secondary"><small>Telefon</small>0173 877 4230</a>
+          </div>
         </div>
 
         <div class="hero-content">
@@ -174,31 +192,40 @@
           <p>Echte Einblicke in ausgeführte Arbeiten – von der Eindeckung über Metallarbeiten bis zum präzisen Anschlussdetail.</p>
         </div>
 
-        <div class="project-grid">
-          <button class="project-card project-1" type="button" data-src="images/hero-original.jpeg" data-title="Steildach" data-tag="Neueindeckung" data-reveal aria-label="Steildach vergrößern">
-            <img src="images/hero-original.jpeg" alt="Steildach – Neueindeckung" loading="lazy">
-            <span class="project-overlay"><small>Neueindeckung</small><strong>Steildach</strong></span><span class="project-open" aria-hidden="true">+</span>
-          </button>
-          <button class="project-card project-2" type="button" data-src="images/project-02.jpeg" data-title="Metalldach" data-tag="Doppelstehfalz" data-reveal aria-label="Metalldach vergrößern">
-            <img src="images/project-02.jpeg" alt="Metalldach – Doppelstehfalz" loading="lazy">
-            <span class="project-overlay"><small>Doppelstehfalz</small><strong>Metalldach</strong></span><span class="project-open" aria-hidden="true">+</span>
-          </button>
-          <button class="project-card project-3" type="button" data-src="images/project-04.jpeg" data-title="Kaminanschluss" data-tag="Detailarbeit" data-reveal aria-label="Kaminanschluss vergrößern">
-            <img src="images/project-04.jpeg" alt="Kaminanschluss – Detailarbeit" loading="lazy">
-            <span class="project-overlay"><small>Detailarbeit</small><strong>Kaminanschluss</strong></span><span class="project-open" aria-hidden="true">+</span>
-          </button>
-          <button class="project-card project-4" type="button" data-src="images/project-06.jpeg" data-title="Wohnhaus" data-tag="Sanierung" data-reveal aria-label="Wohnhaus vergrößern">
-            <img src="images/project-06.jpeg" alt="Wohnhaus – Sanierung" loading="lazy">
-            <span class="project-overlay"><small>Sanierung</small><strong>Wohnhaus</strong></span><span class="project-open" aria-hidden="true">+</span>
-          </button>
-          <button class="project-card project-5" type="button" data-src="images/project-08.jpeg" data-title="Dachdetails" data-tag="Spenglerarbeit" data-reveal aria-label="Dachdetails vergrößern">
-            <img src="images/project-08.jpeg" alt="Dachdetails – Spenglerarbeit" loading="lazy">
-            <span class="project-overlay"><small>Spenglerarbeit</small><strong>Dachdetails</strong></span><span class="project-open" aria-hidden="true">+</span>
-          </button>
-          <button class="project-card project-6" type="button" data-src="images/project-11.jpeg" data-title="Bestandsdach" data-tag="Umbau" data-reveal aria-label="Bestandsdach vergrößern">
-            <img src="images/project-11.jpeg" alt="Bestandsdach – Umbau" loading="lazy">
-            <span class="project-overlay"><small>Umbau</small><strong>Bestandsdach</strong></span><span class="project-open" aria-hidden="true">+</span>
-          </button>
+        <div class="project-carousel" data-carousel data-reveal>
+          <div class="carousel-toolbar">
+            <p>Wischen oder mit den Pfeilen navigieren</p>
+            <div class="carousel-status" aria-live="polite"><strong data-carousel-current>01</strong><span>/</span><span data-carousel-total>05</span></div>
+            <div class="carousel-controls">
+              <button type="button" data-carousel-prev aria-label="Vorheriges Projekt">←</button>
+              <button type="button" data-carousel-next aria-label="Nächstes Projekt">→</button>
+            </div>
+          </div>
+
+          <div class="project-carousel-viewport" data-carousel-viewport tabindex="0" aria-label="Projektgalerie, horizontal wischbar">
+            <div class="project-carousel-track">
+              <button class="project-card project-slide" type="button" data-src="images/referenz-dach-fertig.jpeg" data-title="Dachsanierung" data-tag="Fertige Dachfläche" aria-label="Fertige Dachsanierung vergrößern">
+                <img src="images/referenz-dach-fertig.jpeg" alt="Neu eingedecktes Ziegeldach mit Dachfenstern" loading="lazy">
+                <span class="project-overlay"><small>Fertige Dachfläche</small><strong>Dachsanierung</strong></span><span class="project-open" aria-hidden="true">+</span>
+              </button>
+              <button class="project-card project-slide" type="button" data-src="images/referenz-fassade.jpeg" data-title="Gerüst stellen" data-tag="Sicher vorbereitet" aria-label="Aufgestelltes Gerüst am Bestandsgebäude vergrößern">
+                <img src="images/referenz-fassade.jpeg" alt="Fachgerecht aufgestelltes Gerüst an einem Bestandsgebäude" loading="lazy">
+                <span class="project-overlay"><small>Sicher vorbereitet</small><strong>Gerüst stellen</strong></span><span class="project-open" aria-hidden="true">+</span>
+              </button>
+              <button class="project-card project-slide" type="button" data-src="images/referenz-eindeckung.jpeg" data-title="Neueindeckung" data-tag="Handwerk in Aktion" aria-label="Neueindeckung in Arbeit vergrößern">
+                <img src="images/referenz-eindeckung.jpeg" alt="Dachdecker bei der Neueindeckung eines roten Ziegeldachs" loading="lazy">
+                <span class="project-overlay"><small>Handwerk in Aktion</small><strong>Neueindeckung</strong></span><span class="project-open" aria-hidden="true">+</span>
+              </button>
+              <button class="project-card project-slide" type="button" data-src="images/referenz-dachfenster.jpeg" data-title="Dachfenster" data-tag="Präzise Anschlüsse" aria-label="Dachfenster und Anschlüsse vergrößern">
+                <img src="images/referenz-dachfenster.jpeg" alt="Ziegeldach mit zwei fachgerecht eingebauten Dachfenstern" loading="lazy">
+                <span class="project-overlay"><small>Präzise Anschlüsse</small><strong>Dachfenster</strong></span><span class="project-open" aria-hidden="true">+</span>
+              </button>
+              <button class="project-card project-slide" type="button" data-src="images/referenz-dachflaeche.jpeg" data-title="Steildach" data-tag="Sauber ausgeführt" aria-label="Ausgeführte Steildachfläche vergrößern">
+                <img src="images/referenz-dachflaeche.jpeg" alt="Großflächig neu eingedecktes Ziegeldach unter bewölktem Himmel" loading="lazy">
+                <span class="project-overlay"><small>Sauber ausgeführt</small><strong>Steildach</strong></span><span class="project-open" aria-hidden="true">+</span>
+              </button>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -246,6 +273,7 @@
           <h2>Was können wir für Ihr Dach tun?</h2>
           <p>Erzählen Sie uns kurz von Ihrem Vorhaben. Wir melden uns persönlich und beraten Sie unverbindlich.</p>
           <div class="contact-lines">
+            <a href="tel:+491715856894"><span>Mobil</span><strong>+49 171 5856894</strong></a>
             <a href="tel:+491738774230"><span>Telefon</span><strong>0173 877 4230</strong></a>
             <a href="mailto:info@kopp-dach.de"><span>E-Mail</span><strong>info@kopp-dach.de</strong></a>
             <div><span>Standort</span><strong>Hutteilstr. 7<br>91614 Mönchsroth</strong></div>
@@ -274,8 +302,12 @@
 
     <footer class="footer">
       <div class="footer-main">
-        <a class="footer-brand" href="#start"><img src="images/logo.png" alt="Peter Kopp" width="236" height="82" loading="lazy"></a>
-        <p>Dach natürlich von uns.</p>
+        <a class="footer-brand" href="#start">
+          <span class="brand-lockup footer-lockup">
+            <img src="images/logo-fahrzeug.png" alt="Peter Kopp – Firma Kopp ist top!" width="270" height="135" loading="lazy">
+          </span>
+        </a>
+        <p>Dach- &amp; Fassadenbau · Spenglerarbeiten · Dachfenster</p>
         <a class="footer-top" href="#start" aria-label="Zurück nach oben">↑</a>
       </div>
       <div class="footer-bottom">
@@ -288,7 +320,7 @@
     <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Projekt Großansicht" hidden>
       <button type="button" aria-label="Großansicht schließen" id="lightbox-close">×</button>
       <div class="lightbox-image">
-        <img id="lightbox-image" src="images/hero-original.jpeg" alt="Projekt Großansicht">
+        <img id="lightbox-image" src="images/hero-kopp-team.jpeg" alt="Projekt Großansicht">
         <div><small id="lightbox-tag"></small><strong id="lightbox-title"></strong></div>
       </div>
     </div>
