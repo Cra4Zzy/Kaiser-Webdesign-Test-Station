@@ -23,6 +23,10 @@ AKTUELLE BESONDERHEITEN
 -----------------------
 - Hero und Referenzgalerie verwenden die neuen Kundenfotos.
 - Die Projektgalerie ist per Touch, Maus, Tastatur und Pfeiltasten bedienbar.
+- Der Bewertungsbereich zeigt die öffentlich auffindbare Google-Gesamtwertung
+  sowie sinngemäß gekürzte Kundenstimmen und verlinkt zur Google-Suche.
+- Im mobilen Hero stehen Anfrage-Button und Infokacheln im normalen Seitenfluss,
+  sodass sie sich auch auf kleineren Displays nicht überlagern.
 - Der mobile Header besitzt ein kompaktes Dropdown-Menü; der Schließen-Button
   bleibt erreichbar und die Seite kann auch bei geöffnetem Menü weiter scrollen.
 
