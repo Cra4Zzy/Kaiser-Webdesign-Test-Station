@@ -63,3 +63,35 @@
  .hero-scroll .hero-media{order:1;flex:1 1 0;min-height:0}
  .hero-media>.hero-poster,.hero-media>.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
 }
+
+
+/* LIVE FIX — scroll animation remains active even if GitHub Pages is missing the MP4. */
+.hero-media{--fallback-glow:.18;--fallback-shift:0%}
+.hero-fallback-motion .hero-media{perspective:1400px}
+.hero-fallback-motion .hero-video{display:none!important}
+.hero-fallback-motion .hero-poster{
+  opacity:1!important;
+  transform-origin:72% 52%;
+  will-change:transform,filter;
+  backface-visibility:hidden;
+}
+.hero-fallback-motion .hero-media::after{
+  content:"";
+  grid-area:1/1;
+  align-self:stretch;
+  justify-self:stretch;
+  pointer-events:none;
+  z-index:2;
+  background:
+    radial-gradient(circle at calc(70% + var(--fallback-shift) * .04) 55%,rgba(190,220,120,var(--fallback-glow)),transparent 34%),
+    linear-gradient(90deg,rgba(5,5,5,.34),transparent 42%,rgba(5,5,5,.08));
+  mix-blend-mode:screen;
+  opacity:.48;
+}
+@media(max-width:760px){
+  .hero-fallback-motion .hero-poster{transform-origin:68% 52%}
+  .hero-fallback-motion .hero-media::after{opacity:.34}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-fallback-motion .hero-poster{transform:none!important;filter:none!important}
+}
