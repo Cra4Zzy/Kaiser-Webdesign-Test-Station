@@ -22,7 +22,7 @@ jobs:
           set -euo pipefail
           mkdir -p assets/video
           cat .video-build/part-*.b64 | base64 --decode > assets/video/kaiser-scroll-desktop.mp4
-          echo "a3e02caab1743b39eb14bb7a9bef993c0ce59502f218e4f183719195e604d491  assets/video/kaiser-scroll-desktop.mp4" | sha256sum -c -
+          echo "45c76e151f3331d710d1a2da15beed86f2e8bce28f44e1adec8aef99c28705b1  assets/video/kaiser-scroll-desktop.mp4" | sha256sum -c -
           test -s assets/video/kaiser-scroll-desktop.mp4
 
       - name: Commit rebuilt video
@@ -32,6 +32,8 @@ jobs:
           git config user.name "Kaiser Build Bot"
           git config user.email "actions@users.noreply.github.com"
           git add assets/video/kaiser-scroll-desktop.mp4
+          git rm -r .video-build
+          git rm .github/workflows/build-hero-video.yml
           git diff --cached --quiet && exit 0
           git commit -m "Fix hero scroll video asset"
           git push
