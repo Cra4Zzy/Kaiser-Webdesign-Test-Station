@@ -64,10 +64,10 @@
   function renderFallback(){
     if(!fallback)return;
     const p=smooth(playheadProgress);
-    const zoom=1+(mobile?.075:.13)*p;
+    const zoom=1+(mobile ? .075 : .13)*p;
     const x=(mobile?-1.2:-2.8)*p;
     const y=(mobile?0.6:1.25)*(p-.45);
-    const rotate=(mobile?.18:.32)*(p-.5);
+    const rotate=(mobile ? .18 : .32)*(p-.5);
     const brightness=.86+.14*Math.sin(Math.PI*p);
     const glow=.18+.42*Math.sin(Math.PI*p);
 
