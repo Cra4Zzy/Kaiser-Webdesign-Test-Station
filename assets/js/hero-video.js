@@ -1,7 +1,8 @@
 /*
-  Kaiser Webdesign — hardware-decoded scroll film.
-  Scroll controls a smoothed target time; the browser's native H.264 decoder
-  presents the frames. No image sequence, no canvas uploads, no fetch-per-frame.
+  Kaiser Webdesign — resilient scroll hero.
+  Uses the native H.264 scroll film when available. If the media asset is
+  missing or cannot be decoded, the existing HQ poster becomes a smooth,
+  scroll-driven cinematic fallback instead of leaving a dead hero.
 */
 (()=>{'use strict';
   const section=document.querySelector('.hero-scroll');
@@ -9,22 +10,18 @@
 
   const stage=section.querySelector('.hero-sticky');
   const media=section.querySelector('.hero-media');
+  const poster=section.querySelector('.hero-poster');
   const video=section.querySelector('.hero-video');
   const button=section.querySelector('#hero-motion-toggle');
   const chapter=section.querySelector('[data-hero-step]');
-  if(!stage||!media||!video||!button||!chapter)return;
+  if(!stage||!media||!poster||!video||!button||!chapter)return;
 
   const reduced=matchMedia('(prefers-reduced-motion: reduce)');
   const saveData=Boolean(navigator.connection?.saveData);
   const mobile=matchMedia('(max-width: 900px)').matches;
 
-  const SOURCE=mobile
-    ? 'assets/video/kaiser-scroll-desktop.mp4?v=github-scroll-v1'
-    : 'assets/video/kaiser-scroll-desktop.mp4?v=github-scroll-v1';
-
-  // Similar to a GSAP-style scrub: scroll defines the destination, but the
-  // playhead glides toward it instead of inheriting the wheel's coarse steps.
-  const SMOOTH_MS=mobile?105:85;
+  const SOURCE='assets/video/kaiser-scroll-desktop.mp4?v=github-scroll-v2';
+  const SMOOTH_MS=mobile?115:90;
   const SNAP_PROGRESS=0.00035;
   const FRAME_COUNT=605;
   const LAST_FRAME=FRAME_COUNT-1;
@@ -33,6 +30,7 @@
   let paused=false;
   let visible=true;
   let ready=false;
+  let fallback=false;
   let targetProgress=0;
   let playheadProgress=0;
   let duration=10.083333;
@@ -53,6 +51,7 @@
   try{video.fetchPriority='high';}catch{}
 
   const clamp=(v,min,max)=>Math.max(min,Math.min(max,v));
+  const smooth=(p)=>p*p*(3-2*p);
 
   function updateMeta(){
     stage.style.setProperty('--hero-progress',String(playheadProgress));
@@ -62,23 +61,54 @@
     video.dataset.time=Number.isFinite(video.currentTime)?video.currentTime.toFixed(3):'0';
   }
 
+  function renderFallback(){
+    if(!fallback)return;
+    const p=smooth(playheadProgress);
+    const zoom=1+(mobile?.075:.13)*p;
+    const x=(mobile?-1.2:-2.8)*p;
+    const y=(mobile?0.6:1.25)*(p-.45);
+    const rotate=(mobile?.18:.32)*(p-.5);
+    const brightness=.86+.14*Math.sin(Math.PI*p);
+    const glow=.18+.42*Math.sin(Math.PI*p);
+
+    poster.style.transform=`translate3d(${x.toFixed(3)}%,${y.toFixed(3)}%,0) scale(${zoom.toFixed(4)}) rotate(${rotate.toFixed(3)}deg)`;
+    poster.style.filter=`brightness(${brightness.toFixed(3)}) contrast(${(1.03+.06*p).toFixed(3)}) saturate(${(.92+.12*p).toFixed(3)})`;
+    media.style.setProperty('--fallback-glow',glow.toFixed(3));
+    media.style.setProperty('--fallback-shift',`${(p*100).toFixed(2)}%`);
+  }
+
+  function activateFallback(reason){
+    if(fallback)return;
+    fallback=true;
+    ready=true;
+    pendingSeek=false;
+    lastRequestedFrame=-1;
+    clearTimeout(presentWatchdog);
+    section.classList.remove('has-video');
+    section.classList.add('hero-fallback-motion');
+    video.pause();
+    try{video.removeAttribute('src');video.load();}catch{}
+    renderFallback();
+    measure();
+    schedule();
+    if(reason)console.info('Kaiser Webdesign: Scroll-Fallback aktiv.',reason);
+  }
+
   function markPresented(){
     clearTimeout(presentWatchdog);
     pendingSeek=false;
-    if(ready)section.classList.add('has-video');
+    if(ready&&!fallback)section.classList.add('has-video');
     pumpSeek();
   }
 
   function onSeeked(){
-    // rVFC confirms that the decoded frame actually reached the compositor.
+    if(fallback)return;
     if(typeof video.requestVideoFrameCallback==='function'){
       const token=++presentToken;
       video.requestVideoFrameCallback(()=>{
         if(token!==presentToken)return;
         markPresented();
       });
-      // Some paused-video implementations can suppress rVFC when two seeks land
-      // on the same decoded picture. Never let that stall the scrub pipeline.
       clearTimeout(presentWatchdog);
       presentWatchdog=setTimeout(()=>{
         if(token===presentToken)markPresented();
@@ -89,9 +119,7 @@
   }
 
   function pumpSeek(){
-    if(!active||paused||!visible||document.hidden||!ready||pendingSeek)return;
-    // Request exact source-frame timestamps. This avoids redundant sub-frame
-    // seeks and keeps the browser aligned with the 60 fps encode.
+    if(fallback||!active||paused||!visible||document.hidden||!ready||pendingSeek)return;
     const wantedFrame=clamp(Math.round(playheadProgress*LAST_FRAME),0,LAST_FRAME);
     if(wantedFrame===lastRequestedFrame)return;
     const wanted=Math.min(timelineEnd,wantedFrame/60);
@@ -123,7 +151,9 @@
       playheadProgress+=delta*alpha;
     }
 
-    pumpSeek();
+    if(fallback)renderFallback();
+    else pumpSeek();
+
     updateMeta();
 
     if(Math.abs(targetProgress-playheadProgress)>SNAP_PROGRESS||pendingSeek)schedule();
@@ -147,45 +177,54 @@
 
     if(!active){
       cancelAnimationFrame(raf);raf=0;lastNow=0;
-      section.classList.remove('has-video');
+      if(!fallback)section.classList.remove('has-video');
       return;
     }
     measure();
     schedule();
   }
 
-  function loadSource(){
+  async function loadSource(){
     if(sourceLoaded)return;
     sourceLoaded=true;
-    video.src=new URL(SOURCE,document.baseURI).href;
-    video.load();
+
+    // GitHub Pages can silently publish the page without a large media file.
+    // Probe first; on any miss we immediately switch to the local scroll fallback.
+    try{
+      const response=await fetch(new URL(SOURCE,document.baseURI).href,{
+        method:'HEAD',
+        cache:'no-store',
+        credentials:'same-origin'
+      });
+      if(!response.ok)throw new Error(`Video HTTP ${response.status}`);
+      video.src=new URL(SOURCE,document.baseURI).href;
+      video.load();
+    }catch(error){
+      activateFallback(error?.message||'Video nicht erreichbar');
+    }
   }
 
   video.addEventListener('loadedmetadata',()=>{
+    if(fallback)return;
     if(Number.isFinite(video.duration)&&video.duration>0){
       duration=video.duration;
       timelineEnd=Math.max(0,duration-1/60);
     }
     ready=true;
-    // Prime a decoded frame without starting playback/autoplay.
     try{video.currentTime=Math.min(.001,timelineEnd);}catch{}
     measure();
     schedule();
   },{once:true});
 
   video.addEventListener('loadeddata',()=>{
+    if(fallback)return;
     ready=true;
     section.classList.add('has-video');
     schedule();
   });
 
   video.addEventListener('seeked',onSeeked);
-  video.addEventListener('error',()=>{
-    // Keep poster visible if media cannot be decoded; don't leave a black hero.
-    ready=false;
-    pendingSeek=false;
-    section.classList.remove('has-video');
-  });
+  video.addEventListener('error',()=>activateFallback('Video konnte nicht dekodiert werden'));
 
   button.addEventListener('click',()=>{
     if(!active){active=true;paused=false;loadSource();}
