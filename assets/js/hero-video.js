@@ -19,8 +19,8 @@
   const mobile=matchMedia('(max-width: 900px)').matches;
 
   const SOURCE=mobile
-    ? 'assets/video/hero/kaiser-scroll-desktop.mp4?v=mobile-ultra-1440-v85'
-    : 'assets/video/hero/kaiser-scroll-desktop.mp4?v=desktop-v85';
+    ? 'assets/video/kaiser-scroll-desktop.mp4?v=github-scroll-v1'
+    : 'assets/video/kaiser-scroll-desktop.mp4?v=github-scroll-v1';
 
   // Similar to a GSAP-style scrub: scroll defines the destination, but the
   // playhead glides toward it instead of inheriting the wheel's coarse steps.
